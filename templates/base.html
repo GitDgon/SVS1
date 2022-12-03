@@ -8,12 +8,12 @@
     <title>Сайт 7 отд</title>
 
     {% block style %}
-        <!-- Bootstrap core CSS -->
-        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-        <!-- Fontawessome -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-        <!-- Custom styles for this template -->
-        <style>
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <!-- Fontawessome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <!-- Custom styles for this template -->
+    <style>
             main > .container {
                 padding: 60px 15px 0;  <!--отступ от хедера--!>
             }
@@ -26,13 +26,14 @@
                 padding-right: 15px;
                 padding-left: 15px;
             }
-        </style>
+
+    </style>
     {% endblock %}
 </head>
 
 <body class="d-flex flex-column h-100">
 
-        {% include 'inc/inc-header.html' %}
+{% include 'inc/inc-header.html' %}
 
 <!-- Begin page content -->
 <main role="main" class="mt-3 flex-shrink-0">
@@ -40,7 +41,7 @@
     {% endblock %}
 </main>
 
-        {% include 'inc/inc-footer.html' %}
+{% include 'inc/inc-footer.html' %}
 
 <!-- Optional JavaScript -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" crossorigin="anonymous"
