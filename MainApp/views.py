@@ -1,5 +1,6 @@
 from django.http import Http404
 from django.shortcuts import render, redirect
+from MainApp.models import Svs_z, Svs_k
 
 
 def index_page(request):
@@ -12,6 +13,10 @@ def add_snippet_page(request):
     return render(request, 'pages/add_snippet.html', context)
 
 
-def snippets_page(request):
-    context = {'pagename': 'Просмотр сниппетов'}
-    return render(request, 'pages/view_snippets.html', context)
+def svs_z_page(request):
+    svs_zs = Svs_z.objects.all()   #все данные из БД
+    context = {
+        'pagename': 'Просмотр svs_z',
+        'svs_zs': svs_zs
+    }
+    return render(request, 'pages/view_svs_z.html', context)
