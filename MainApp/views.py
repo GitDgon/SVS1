@@ -16,7 +16,16 @@ def add_snippet_page(request):
 def svs_z_page(request):
     svs_zs = Svs_z.objects.all()   #все данные из БД
     context = {
-        'pagename': 'Просмотр svs_z',
+        'pagename': 'Просмотр базы svs_z',
         'svs_zs': svs_zs
     }
     return render(request, 'pages/view_svs_z.html', context)
+
+
+def zvs_detail(request, zvs_id):   #отображение отдельного сниппета
+    zvs = Svs_z.objects.get(pk=zvs_id)
+    context = {
+        'pagename': 'Страница отдельного zvs',
+        "zvs": zvs,
+    }
+    return render(request, 'pages/page_zvs.html', context)
