@@ -5,8 +5,8 @@ from MainApp import views
 
 urlpatterns = [
     path('', views.index_page, name='home'),
-    path('snippets/add', views.add_snippet_page, name='svs-add'),
-    path('snippets/list', views.svs_z_page, name='svs-list'),
+    path('zvs/add', views.add_zvs_page, name='zvs-add'),
+    path('zvs/list', views.svs_z_page, name='zvs-list'),
 
     path('zvs/<int:zvs_id>/', views.zvs_detail, name='zvs-detail'),
 
