@@ -1,6 +1,7 @@
 from django.http import Http404
 from django.shortcuts import render, redirect
 from MainApp.models import Svs_z, Svs_k
+from MainApp.forms import ZvsForm
 
 
 def index_page(request):
@@ -10,18 +11,28 @@ def index_page(request):
 
 def add_zvs_page(request):   #request содержит всю инф.которую мы получаем из браузера
     if request.method == "POST":    #обработка данных полученных из Формы
-        form_date = request.POST
+
+
+#        form_date = request.POST
         #print(f"{form_date=}")
-        zvs = Svs_z(
-            name=form_date['name'],
-            lang=form_date['lang'],
-            code=form_date['code']
-        )
-        zvs.save()
+#        zvs = Svs_z(
+#            name=form_date['name'],
+#            lang=form_date['lang'],
+#            code=form_date['code']
+#        )
+#        zvs.save()
+
+        form = ZvsForm(request.POST)
+        if form.is_valid():
+            form.save()
         return redirect('zvs-list')
 
     elif request.method == "GET":
-        context = {'pagename': 'Добавление нового сниппета'}
+        form = ZvsForm()
+        context = {
+            'pagename': 'Добавление нового ZVS',\
+            'form': form
+            }
         return render(request, 'pages/add_snippet.html', context)
 
 
