@@ -12,8 +12,6 @@ def index_page(request):
 
 def add_zvs_page(request):   #request содержит всю инф.которую мы получаем из браузера
     if request.method == "POST":    #обработка данных полученных из Формы
-
-
 #        form_date = request.POST
         #print(f"{form_date=}")
 #        zvs = Svs_z(
@@ -22,10 +20,11 @@ def add_zvs_page(request):   #request содержит всю инф.котор�
 #            code=form_date['code']
 #        )
 #        zvs.save()
-
         form = ZvsForm(request.POST)
         if form.is_valid():
-            form.save()
+            zvs = form.save(commit=False)  #отложть сохранение и вернуть объект zvs
+            zvs.user = request.user
+            zvs.save()
         return redirect('zvs-list')
 
     elif request.method == "GET":
