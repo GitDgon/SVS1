@@ -10,3 +10,8 @@ run django-extensions console:
 Откатить до определенного commita на Githab
 `git reset --hard <hash коммита: ea06...dd7v>`
 
+Создаем миграцию:
+`python manage.py makemigrations`
+
+Применяем миграцию:
+`python manage.py migrate`

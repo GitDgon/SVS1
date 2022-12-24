@@ -56,3 +56,7 @@ def zvs_detail(request, zvs_id):   #отображение отдельного 
     return render(request, 'pages/page_zvs.html', context)
 
 
+
+
+
+#KVS
