@@ -1,7 +1,7 @@
 from django.http import Http404
 from django.shortcuts import render, redirect
 from MainApp.models import Svs_z, Svs_k
-from MainApp.forms import ZvsForm
+from MainApp.forms import ZvsForm, UserRegistrationForm
 from django.contrib import auth
 
 
@@ -75,6 +75,17 @@ def logout_page(request):   #разлогирование
     auth.logout(request)
     return redirect('home')
 
+
+def registration(request):  #создание пользователя
+    if request.method == "POST":    #создаем пользоателя
+        form = UserRegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    elif request.method == "GET":   #вернуть страницу с формой
+        form = UserRegistrationForm()
+        context = {'form': form}
+        return render(request, 'pages/registration.html', context)
 
 
 

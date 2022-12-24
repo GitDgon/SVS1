@@ -10,6 +10,8 @@ urlpatterns = [
     path('zvs/<int:zvs_id>/', views.zvs_detail, name='zvs-detail'),
 
     path('login/', views.login_page, name='login'),
-    path('logout/', views.logout_page, name='logout')
+    path('logout/', views.logout_page, name='logout'),
+
+    path('register/', views.registration, name='register')
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
