@@ -7,7 +7,9 @@ urlpatterns = [
     path('', views.index_page, name='home'),
     path('zvs/add', views.add_zvs_page, name='zvs-add'),
     path('zvs/list', views.svs_z_page, name='zvs-list'),
-
     path('zvs/<int:zvs_id>/', views.zvs_detail, name='zvs-detail'),
+
+    path('login/', views.login_page, name='login'),
+    path('logout/', views.logout_page, name='logout')
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -15,3 +15,10 @@ run django-extensions console:
 
 Применяем миграцию:
 `python manage.py migrate`
+
+Сохранение на GIT:
+`git add .`
+`git commit -m "Изменил модель bd svs_k"`
+`git push origin master`
+
+python manage.py createsuperuser

@@ -2,6 +2,7 @@ from django.http import Http404
 from django.shortcuts import render, redirect
 from MainApp.models import Svs_z, Svs_k
 from MainApp.forms import ZvsForm
+from django.contrib import auth
 
 
 def index_page(request):
@@ -54,6 +55,26 @@ def zvs_detail(request, zvs_id):   #отображение отдельного 
         "zvs": zvs,
     }
     return render(request, 'pages/page_zvs.html', context)
+
+
+def login_page(request):
+   if request.method == 'POST':
+       username = request.POST.get("username")
+       password = request.POST.get("password")
+       # print("username =", username)
+       # print("password =", password)
+       user = auth.authenticate(request, username=username, password=password)
+       if user is not None:
+           auth.login(request, user)  #создается токин авторизации отправляемый пользователю
+       else:
+           # Return error message
+           pass
+   return redirect('home')
+
+
+def logout_page(request):   #разлогирование
+    auth.logout(request)
+    return redirect('home')
 
 
 
