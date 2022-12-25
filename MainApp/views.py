@@ -6,7 +6,16 @@ from django.contrib import auth
 
 
 def index_page(request):
-    context = {'pagename': 'PythonBin'}
+    print("user= ", request.user)
+    if request.user.is_authenticated:  #если авторизован - True
+        errors = []
+    else:
+        errors = ["password or username not correct"]
+    context = {
+        'pagename': 'PythonBin',
+        'errors': errors
+    }
+
     return render(request, 'pages/index.html', context)
 
 
@@ -56,7 +65,7 @@ def zvs_detail(request, zvs_id):   #отображение отдельного 
     return render(request, 'pages/page_zvs.html', context)
 
 
-def login_page(request):
+def login_page(request):   #форма логирования
    if request.method == 'POST':
        username = request.POST.get("username")
        password = request.POST.get("password")
@@ -78,12 +87,16 @@ def logout_page(request):   #разлогирование
 
 def registration(request):  #создание пользователя
     if request.method == "POST":    #создаем пользоателя
-        form = UserRegistrationForm(request.POST)
+        form = UserRegistrationForm(request.POST)   #форма с заполненными данными пользователем каторые пришли
         if form.is_valid():
-            form.save()
+            form.save()   #сохраняем в bd
             return redirect('home')
+        else:                       #если не валидные данные
+            #print("errors= ", form.errors.items())  #для просмотра ошибок в терминале (словарик)
+            context = {'form': form}
+            return render(request, 'pages/registration.html', context)
     elif request.method == "GET":   #вернуть страницу с формой
-        form = UserRegistrationForm()
+        form = UserRegistrationForm()   #возврат пустой формы
         context = {'form': form}
         return render(request, 'pages/registration.html', context)
 
