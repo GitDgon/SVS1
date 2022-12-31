@@ -32,7 +32,7 @@ def add_zvs_page(request):   #request содержит всю инф.котор�
         form = ZvsForm(request.POST)
         if form.is_valid():
             zvs = form.save(commit=False)  #отложть сохранение и вернуть объект zvs
-            zvs.user = request.user
+            zvs.user = request.user  #данные внес пользователь каторый сейчас зарегестрирован, в поле USER
             zvs.save()
         return redirect('zvs-list')
 
@@ -99,6 +99,15 @@ def registration(request):  #создание пользователя
         form = UserRegistrationForm()   #возврат пустой формы
         context = {'form': form}
         return render(request, 'pages/registration.html', context)
+
+
+def zvs_my(request):
+    svs_zs = Svs_z.objects.filter(user=request.user)  #данные из БД для зарегистрированного пользователя
+    context = {
+        'pagename': 'Просмотр моих svs_z',
+        'svs_zs': svs_zs
+    }
+    return render(request, 'pages/view_svs_z.html', context)
 
 
 
