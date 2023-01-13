@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- Begin page content -->
+<main role="main" class="mt-3 flex-shrink-0">
+    <div class="container">
+        <div class="row">
+            <div class="col text-center">
+                <h1>{{ pagename }}</h1>
+                <hr>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <p>На данной странице будут отображаться все KVS.</p>
+                <p>Пока тут просто пример, но скоро заменим реальными KVS из БД!</p>
+                <hr>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <table class="table table-striped">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Название</th>
+                        <th scope="col">Дата создания</th>
+                        <th scope="col">Тест</th>
+                        <th scope="col">Рабочий</th>
+                        <th scope="col">Прием граждан</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    {% for svs_k in svs_ks %}
+                    <tr>
+                        <td scope="row">{{ svs_k.id }}</td>
+                        <td><a href="/kvs/{{ svs_k.id }}">{{ svs_k.name }}</a></td>
+                        <td>{{ svs_k.date }}</td>
+                        <td>{{ svs_k.test }}</td>
+                        <td>{{ svs_k.rab }}</td>
+                        <td>{{ svs_k.priem }}</td>
+                    <!--    <td>{{ svs_z.user | default:"Аноним" }}</td>  -->
+                    </tr>
+                    {% endfor %}
+
+
+                    </tbody>
+                </table>
+                <div align="right">
+                    <i style="color: gray;">Всего сниппетов: 2</i>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

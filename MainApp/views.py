@@ -113,3 +113,11 @@ def zvs_my(request):
 
 
 #KVS
+
+def svs_k_page(request):
+    svs_ks = Svs_k.objects.all()   #все данные из БД
+    context = {
+        'pagename': 'Просмотр базы svs_k',
+        'svs_ks': svs_ks
+    }
+    return render(request, 'pages/view_svs_k.html', context)
