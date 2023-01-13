@@ -1,7 +1,7 @@
 from django.http import Http404
 from django.shortcuts import render, redirect
 from MainApp.models import Svs_z, Svs_k
-from MainApp.forms import ZvsForm, UserRegistrationForm
+from MainApp.forms import ZvsForm, KvsForm, UserRegistrationForm
 from django.contrib import auth
 
 
@@ -121,3 +121,30 @@ def svs_k_page(request):
         'svs_ks': svs_ks
     }
     return render(request, 'pages/view_svs_k.html', context)
+
+
+
+def add_kvs_page(request):   #request содержит всю инф.которую мы получаем из браузера
+    if request.method == "POST":    #обработка данных полученных из Формы
+#        form_date = request.POST
+        #print(f"{form_date=}")
+#        zvs = Svs_z(
+#            name=form_date['name'],
+#            lang=form_date['lang'],
+#            code=form_date['code']
+#        )
+#        zvs.save()
+        form = KvsForm(request.POST)
+        if form.is_valid():
+            zvs = form.save(commit=False)  #отложть сохранение и вернуть объект zvs
+        #    zvs.user = request.user  #данные внес пользователь каторый сейчас зарегестрирован, в поле USER
+            zvs.save()
+        return redirect('kvs-list')
+
+    elif request.method == "GET":
+        form = KvsForm()
+        context = {
+            'pagename': 'Добавление нового KVS',\
+            'form': form
+            }
+        return render(request, 'pages/add_kvs.html', context)

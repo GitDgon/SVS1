@@ -9,12 +9,14 @@ LANG = [
 ]
 
 NAMEKVS = [
-    ("KVS", "KVS"),
+    ("KVS-ГФИ", "KVS-ГФИ"),
+    ("KVS-Приемная", "KVS-Приемная"),
+    ("KVS-Уренгой", "KVS-Уренгой"),
 
 ]
 
 class Svs_k(models.Model):
-    name = models.CharField(max_length=3, choices=NAMEKVS)
+    name = models.CharField(max_length=12, choices=NAMEKVS)
     date = models.DateField(null=True, blank=True)
     test = models.IntegerField(default=0)
     rab = models.PositiveSmallIntegerField(default=0)

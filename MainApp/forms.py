@@ -1,5 +1,5 @@
 from django.forms import ModelForm, Textarea, TextInput
-from MainApp.models import Svs_z
+from MainApp.models import Svs_z, Svs_k
 from django.contrib.auth.models import User
 from django.forms import CharField, PasswordInput
 from django.core.exceptions import ValidationError
@@ -21,6 +21,29 @@ class ZvsForm(ModelForm):
            'code': ''
        }
 
+
+
+class KvsForm(ModelForm):
+   class Meta:
+       model = Svs_k
+       # Описываем поля, которые будем заполнять в форме
+       fields = ['name', 'date', 'test', 'rab', 'priem', 'lang']
+       widgets = {
+        #   'name': TextInput(attrs={"placeholder": "Название", "class": "blue"}),
+           'lang': Textarea(attrs={"placeholder": "Примечание"}),
+       }
+       labels = {
+#           'name': '',
+#           'lang': '',
+#           'code': ''
+       }
+
+#    name = models.CharField(max_length=3, choices=NAMEKVS)
+#    date = models.DateField(null=True, blank=True)
+#    test = models.IntegerField(default=0)
+#    rab = models.PositiveSmallIntegerField(default=0)
+#    priem = models.BooleanField(default=False)
+#    lang = models.CharField(max_length=300)
 
 
 class UserRegistrationForm(ModelForm):
