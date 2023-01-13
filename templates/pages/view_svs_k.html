@@ -43,7 +43,12 @@
                         <td>{{ svs_k.date }}</td>
                         <td>{{ svs_k.test }}</td>
                         <td>{{ svs_k.rab }}</td>
-                        <td>{{ svs_k.priem }}</td>
+                        <td> {% if svs_k.priem > 0 %}
+                                ДА
+                            {% else %}
+                                нет
+                            {% endif %}
+                        </td>
                     <!--    <td>{{ svs_z.user | default:"Аноним" }}</td>  -->
                     </tr>
                     {% endfor %}
