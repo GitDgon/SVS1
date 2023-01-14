@@ -112,7 +112,7 @@ def zvs_my(request):
 
 
 
-#KVS
+        #KVS
 
 def svs_k_page(request):
     svs_ks = Svs_k.objects.all()   #все данные из БД
@@ -148,3 +148,13 @@ def add_kvs_page(request):   #request содержит всю инф.котор�
             'form': form
             }
         return render(request, 'pages/add_kvs.html', context)
+
+
+def kvs_detail(request, kvs_id):   #отображение отдельного kvs
+    print("kvs_ID=", kvs_id)
+    kvs = Svs_k.objects.get(pk=kvs_id)
+    context = {
+        'pagename': 'Страница отдельного kvs',
+        "kvs": kvs,
+    }
+    return render(request, 'pages/page_kvs.html', context)
