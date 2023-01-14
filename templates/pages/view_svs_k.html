@@ -26,6 +26,7 @@
                     <thead class="thead-dark">
                     <tr>
                         <th scope="col">ID</th>
+                        <th scope="col"></th>
                         <th scope="col">Название</th>
                         <th scope="col">Дата создания</th>
                         <th scope="col">Тест</th>
@@ -39,6 +40,7 @@
                     {% for svs_k in svs_ks %}
                     <tr>
                         <td scope="row">{{ svs_k.id }}</td>
+                        <td><i class="fa-solid fa-trash"></i></td>
                         <td><a href="/kvs/{{ svs_k.id }}">{{ svs_k.name }}</a></td>
                         <td>{{ svs_k.date }}</td>
                         <td>{{ svs_k.test }}</td>

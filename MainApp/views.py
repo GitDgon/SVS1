@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from MainApp.models import Svs_z, Svs_k
 from MainApp.forms import ZvsForm, KvsForm, UserRegistrationForm
 from django.contrib import auth
+from django.contrib.auth.decorators import login_required
 
 
 def index_page(request):
@@ -65,6 +66,15 @@ def zvs_detail(request, zvs_id):   #отображение отдельного 
     return render(request, 'pages/page_zvs.html', context)
 
 
+
+def zvs_delete(request, zvs_id):
+    zvs = Svs_z.objects.get(pk=zvs_id) #получаем zvs с нужным ID из BD
+    zvs.delete()
+    return redirect('zvs-list')
+
+
+
+
 def login_page(request):   #форма логирования
    if request.method == 'POST':
        username = request.POST.get("username")
@@ -101,6 +111,7 @@ def registration(request):  #создание пользователя
         return render(request, 'pages/registration.html', context)
 
 
+@login_required()
 def zvs_my(request):
     svs_zs = Svs_z.objects.filter(user=request.user)  #данные из БД для зарегистрированного пользователя
     context = {

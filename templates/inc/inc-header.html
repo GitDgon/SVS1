@@ -23,11 +23,13 @@
                         </a>
                     </li>
 
+                    {% if request.user.is_authenticated %}
                     <li class="form-inline">
                         <a class="btn btn-outline-info" href="{% url 'zvs-my' %}">
                             Мои zvs
                         </a>
                     </li>
+                    {% endif %}
 
                 </ul>
             </div>

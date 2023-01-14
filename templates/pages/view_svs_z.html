@@ -36,7 +36,14 @@
                     {% for svs_z in svs_zs %}
                     <tr>
                         <td scope="row">{{ svs_z.id }}</td>
-                        <td><a href="/zvs/{{ svs_z.id }}">{{ svs_z.name }}</a></td>
+                        <td>
+                            <a href="/zvs/{{ svs_z.id }}">
+                                {{ svs_z.name }}
+                            </a>
+                            <a href="{% url 'zvs-delete' svs_z.id %}">
+                                <i style="color: #da7b87" class="fa-solid fa-trash"></i>
+                            </a>
+                        </td>
                         <td>{{ svs_z.creation_date }}</td>
                         <td>{{ svs_z.user | default:"Аноним" }}</td>
                     </tr>
