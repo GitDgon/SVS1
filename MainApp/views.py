@@ -4,6 +4,7 @@ from MainApp.models import Svs_z, Svs_k
 from MainApp.forms import ZvsForm, KvsForm, UserRegistrationForm
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
+from django.db.models import Sum
 
 
 def index_page(request):
@@ -127,9 +128,18 @@ def zvs_my(request):
 
 def svs_k_page(request):
     svs_ks = Svs_k.objects.all()   #все данные из БД
+    total_rab = Svs_k.objects.aggregate(Sum('rab'))
+    print(total_rab)
+    print(type(total_rab))
+
+    sum_rab = total_rab["rab__sum"]
+    print(sum_rab)
+
+    #print(total_rab[rab_sum])
     context = {
         'pagename': 'Просмотр базы svs_k',
-        'svs_ks': svs_ks
+        'svs_ks': svs_ks,
+        'sum_rab': sum_rab
     }
     return render(request, 'pages/view_svs_k.html', context)
 

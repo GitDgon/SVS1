@@ -28,6 +28,7 @@
                         <th scope="col">ID</th>
                         <th scope="col">Название</th>
                         <th scope="col">Дата создания</th>
+                        <th scope="col">Язык</th>
                         <th scope="col">Автор</th>
                     </tr>
                     </thead>
@@ -45,6 +46,8 @@
                             </a>
                         </td>
                         <td>{{ svs_z.creation_date }}</td>
+                        <td>{{ svs_z.lang }}</td>
+
                         <td>{{ svs_z.user | default:"Аноним" }}</td>
                     </tr>
                     {% endfor %}
