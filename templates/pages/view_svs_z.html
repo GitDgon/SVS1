@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load my_tags %}
 {% block content %}
 
 <!-- Begin page content -->
@@ -48,7 +48,7 @@
                         <td>{{ svs_z.creation_date }}</td>
                         <td>{{ svs_z.lang }}</td>
 
-                        <td>{{ svs_z.user | default:"Аноним" }}</td>
+                        <td>{{ svs_z.user | is_empty:"Аноним" }}</td>
                     </tr>
                     {% endfor %}
 
