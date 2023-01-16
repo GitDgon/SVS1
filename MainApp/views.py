@@ -1,7 +1,7 @@
 from django.http import Http404
 from django.shortcuts import render, redirect
 from MainApp.models import Svs_z, Svs_k
-from MainApp.forms import ZvsForm, KvsForm, UserRegistrationForm
+from MainApp.forms import ZvsForm, KvsForm, UserRegistrationForm, CommentForm
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.db.models import Sum
@@ -60,12 +60,29 @@ def svs_z_page(request):
 
 def zvs_detail(request, zvs_id):   #отображение отдельного zvs
     zvs = Svs_z.objects.get(pk=zvs_id)
+    comment_form = CommentForm()
     context = {
         'pagename': 'Страница отдельного zvs',
         "zvs": zvs,
+        "comment_form": comment_form,
     }
     return render(request, 'pages/page_zvs.html', context)
 
+
+def comment_add(request):    #добавление комментария
+    if request.method == "POST":
+        comment_form = CommentForm(request.POST)
+        zvs_id = request.POST['zvs_id']
+        print(zvs_id)
+        if comment_form.is_valid():
+            comment = comment_form.save(commit=False)
+            comment.author = request.user
+            comment.snippet = Svs_z.objects.get(id=zvs_id)
+            comment.save()
+
+        return redirect(f'/zvs/{zvs_id}')
+
+    raise Http404
 
 
 def zvs_delete(request, zvs_id):

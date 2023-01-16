@@ -21,4 +21,5 @@ run django-extensions console:
 `git commit -m "Изменил модель bd svs_k"`
 `git push origin master`
 
-python manage.py createsuperuser
+Создать supper-user
+`python manage.py createsuperuser`

@@ -31,4 +31,13 @@ class Svs_z(models.Model):
     code = models.TextField(max_length=5000)
     creation_date = models.DateTimeField(auto_now=True)
     user = models.ForeignKey(to=User, on_delete=models.CASCADE,
-                             blank=True, null=True)
+                             blank=True, null=True)   #blank=True, null=True - т.е. неавторизованные могут добавлять svs
+
+                                                        #on_delete=models.CASCADE - если удалим пользователя
+                                                         #то удалятся все его сниппеты
+
+class Comment(models.Model):
+   text = models.TextField(max_length=2000)
+   creation_date = models.DateTimeField(auto_now=True)
+   author = models.ForeignKey(to=User, on_delete=models.CASCADE)
+   snippet = models.ForeignKey(to=Svs_z, on_delete=models.CASCADE)
