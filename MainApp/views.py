@@ -61,9 +61,12 @@ def svs_z_page(request):
 def zvs_detail(request, zvs_id):   #отображение отдельного zvs
     zvs = Svs_z.objects.get(pk=zvs_id)
     comment_form = CommentForm()
+    comments = zvs.comments.all()  #получаем все комментарии zvs_id
+    print (comments)
     context = {
         'pagename': 'Страница отдельного zvs',
         "zvs": zvs,
+        "comments": comments,
         "comment_form": comment_form,
     }
     return render(request, 'pages/page_zvs.html', context)

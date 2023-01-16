@@ -22,6 +22,14 @@
             </div>
         </fieldset>
 
+
+            {% for comment in comments %}
+                <div class="row">
+                    {{ comment.text }}
+                </div>
+            {% endfor %}
+
+
             <div class="row">
                 <form action="{% url 'comment_add' %}" method="POST">
                     {% csrf_token %}
