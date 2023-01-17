@@ -51,11 +51,21 @@ def add_zvs_page(request):   #request содержит всю инф.котор�
 
 def svs_z_page(request):
     svs_zs = Svs_z.objects.all()   #все данные из БД
+
+    print("request GET= ", request.GET)
+    lang = request.GET.get("lang") #реализация фильтрации по языку программирования
+                               #если просто запрос без фильтра, то lang = None
+    print(f"{lang=}")
+    if lang is not None:
+        svs_zs = svs_zs.filter(lang=lang)
+
     context = {
         'pagename': 'Просмотр базы svs_z',
-        'svs_zs': svs_zs
+        'svs_zs': svs_zs,
+        'lang': lang
     }
     return render(request, 'pages/view_svs_z.html', context)
+
 
 
 def zvs_detail(request, zvs_id):   #отображение отдельного zvs

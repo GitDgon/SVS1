@@ -35,6 +35,7 @@ class Svs_z(models.Model):
 
                                                         #on_delete=models.CASCADE - если удалим пользователя
                                                          #то удалятся все его сниппеты
+    private = models.BooleanField(default=True)  #все раннее введенные будут приватные
 
 class Comment(models.Model):
    text = models.TextField(max_length=2000)

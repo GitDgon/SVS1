@@ -10,7 +10,7 @@ class ZvsForm(ModelForm):
    class Meta:
        model = Svs_z
        # Описываем поля, которые будем заполнять в форме
-       fields = ['name', 'lang', 'code']
+       fields = ['name', 'lang', 'code', 'private']
        widgets = {
            'name': TextInput(attrs={"placeholder": "Название", "class": "blue"}),
            'code': Textarea(attrs={"placeholder": "Код"}),
