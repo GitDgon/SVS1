@@ -59,10 +59,23 @@ def svs_z_page(request):
     if lang is not None:
         svs_zs = svs_zs.filter(lang=lang)
 
+    sort = request.GET.get("sort") #извлекаем sort
+    print(f"{sort=}")
+    if sort == "name":
+        svs_zs = svs_zs.order_by(sort) #sort переменная т.е. name
+        sort = "-name"
+    elif sort == "-name":
+        svs_zs = svs_zs.order_by(sort)
+        sort = "name"
+    else:
+        sort = "name"
+
+
     context = {
         'pagename': 'Просмотр базы svs_z',
         'svs_zs': svs_zs,
-        'lang': lang
+        'lang': lang,
+        'sort': sort,
     }
     return render(request, 'pages/view_svs_z.html', context)
 
