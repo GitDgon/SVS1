@@ -23,3 +23,13 @@ run django-extensions console:
 
 Создать supper-user
 `python manage.py createsuperuser`
+
+Сохранить данные в fixtures:
+`python manage.py dumpdata MainApp > MainApp/fixtures/save_all.json`
+`python manage.py dumpdata MainApp auth.User > MainApp/fixtures/save_all.json`
+
+Очистить БД:
+`python manage.py flush`
+
+Добавить информацию в БД из fixture:
+`python manage.py loaddata save_all.json`

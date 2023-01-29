@@ -1,0 +1,194 @@
+[
+  {
+    "model": "MainApp.svs_k",
+    "pk": 1,
+    "fields": {
+      "name": "",
+      "date": "2022-01-01",
+      "test": 1,
+      "rab": 1,
+      "priem": false,
+      "lang": ""
+    }
+  },
+  {
+    "model": "MainApp.svs_k",
+    "pk": 2,
+    "fields": {
+      "name": "",
+      "date": "2022-01-02",
+      "test": 1,
+      "rab": 1,
+      "priem": true,
+      "lang": ""
+    }
+  },
+  {
+    "model": "MainApp.svs_k",
+    "pk": 3,
+    "fields": {
+      "name": "KVS-Приемная",
+      "date": "2022-12-10",
+      "test": 1,
+      "rab": 2,
+      "priem": true,
+      "lang": "Ok"
+    }
+  },
+  {
+    "model": "MainApp.svs_k",
+    "pk": 4,
+    "fields": {
+      "name": "KVS-Уренгой",
+      "date": "2022-12-11",
+      "test": 1,
+      "rab": 2,
+      "priem": true,
+      "lang": "Ok"
+    }
+  },
+  {
+    "model": "MainApp.svs_z",
+    "pk": 4,
+    "fields": {
+      "name": "svs",
+      "lang": "js",
+      "code": "vert jhgj",
+      "creation_date": "2022-12-03T09:31:52.119Z",
+      "user": null,
+      "private": true
+    }
+  },
+  {
+    "model": "MainApp.svs_z",
+    "pk": 5,
+    "fields": {
+      "name": "kvs",
+      "lang": "py",
+      "code": "CJREf vB",
+      "creation_date": "2022-12-07T16:02:18.580Z",
+      "user": null,
+      "private": true
+    }
+  },
+  {
+    "model": "MainApp.svs_z",
+    "pk": 12,
+    "fields": {
+      "name": "snippet 302",
+      "lang": "py",
+      "code": "gxrtxrt",
+      "creation_date": "2022-12-16T16:11:46.624Z",
+      "user": null,
+      "private": true
+    }
+  },
+  {
+    "model": "MainApp.svs_z",
+    "pk": 14,
+    "fields": {
+      "name": "snippet 445",
+      "lang": "js",
+      "code": "edherah",
+      "creation_date": "2022-12-24T06:22:16.755Z",
+      "user": null,
+      "private": true
+    }
+  },
+  {
+    "model": "MainApp.svs_z",
+    "pk": 15,
+    "fields": {
+      "name": "snippet 2344",
+      "lang": "py",
+      "code": "dh",
+      "creation_date": "2022-12-24T06:22:48.587Z",
+      "user": null,
+      "private": true
+    }
+  },
+  {
+    "model": "MainApp.svs_z",
+    "pk": 16,
+    "fields": {
+      "name": "snippet admin",
+      "lang": "py",
+      "code": "admin",
+      "creation_date": "2022-12-24T13:25:05.830Z",
+      "user": 1,
+      "private": true
+    }
+  },
+  {
+    "model": "MainApp.svs_z",
+    "pk": 17,
+    "fields": {
+      "name": "snippet 234",
+      "lang": "py",
+      "code": "sef dfg dfdf dfdf",
+      "creation_date": "2022-12-28T14:19:20.132Z",
+      "user": 2,
+      "private": true
+    }
+  },
+  {
+    "model": "MainApp.svs_z",
+    "pk": 18,
+    "fields": {
+      "name": "cpp",
+      "lang": "Cpp",
+      "code": "cod",
+      "creation_date": "2023-01-17T11:52:56.758Z",
+      "user": 1,
+      "private": false
+    }
+  },
+  {
+    "model": "MainApp.svs_z",
+    "pk": 19,
+    "fields": {
+      "name": "Vctr",
+      "lang": "py",
+      "code": "zxc",
+      "creation_date": "2023-01-21T04:51:27.371Z",
+      "user": 1,
+      "private": false
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$390000$pLMFun1xX2Owj73X1TVaSC$WdRrBwsGigutdJLgmO52AoZOIqH8s/TT2TZlAOjvrgY=",
+      "last_login": "2023-01-29T10:15:16.932Z",
+      "is_superuser": true,
+      "username": "admin",
+      "first_name": "",
+      "last_name": "",
+      "email": "admin@mail.ru",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2022-12-24T09:14:31.451Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 2,
+    "fields": {
+      "password": "pbkdf2_sha256$390000$bDl0ZN6aMsUfd1WH0V7ZEI$PcsDD7Tl4fzEmw7qulWyWGeFu05JwrbEFYNn4bJzP4U=",
+      "last_login": "2022-12-28T14:19:02.464Z",
+      "is_superuser": false,
+      "username": "user1",
+      "first_name": "",
+      "last_name": "",
+      "email": "user1@mail.ru",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2022-12-24T14:18:20.460Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  }
+]
