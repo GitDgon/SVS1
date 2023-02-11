@@ -25,5 +25,6 @@ urlpatterns = [
     path('kvs/list', views.svs_k_page, name='kvs-list'),
     path('kvs/add', views.add_kvs_page, name='kvs-add'),
     path('kvs/<int:kvs_id>/', views.kvs_detail, name='kvs-detail'),
+    path('kvs/<int:kvs_id>/delete', views.kvs_delete, name='kvs-delete'),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

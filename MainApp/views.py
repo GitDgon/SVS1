@@ -222,3 +222,11 @@ def kvs_detail(request, kvs_id):   #отображение отдельного 
         "kvs": kvs,
     }
     return render(request, 'pages/page_kvs.html', context)
+
+
+
+def kvs_delete(request, kvs_id):
+    print(kvs_id)
+    kvs = Svs_k.objects.get(pk=kvs_id) #получаем kvs с нужным ID из BD
+    kvs.delete()
+    return redirect('kvs-list')

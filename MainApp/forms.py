@@ -31,6 +31,7 @@ class KvsForm(ModelForm):
        widgets = {
         #   'name': TextInput(attrs={"placeholder": "Название", "class": "blue"}),
            'lang': Textarea(attrs={"placeholder": "Примечание"}),
+
        }
        labels = {
 #           'name': '',
