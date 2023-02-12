@@ -15,8 +15,24 @@ NAMEKVS = [
 
 ]
 
+OPERATORKVS = [
+    ("Ivanov I.I.", "Иванов"),
+    ("Petrov P.P.", "Петров"),
+    ("Sidorov S.S.", "Сидоров"),
+
+]
+
+VEDUSHIJKVS = [
+    ("MinStroj", "Минстрой"),
+    ("MinZdrav", "Минздрав"),
+    ("Ektb", "Екатеринбург"),
+
+]
+
 class Svs_k(models.Model):
     name = models.CharField(max_length=12, choices=NAMEKVS)
+    operator = models.CharField(max_length=13, choices=OPERATORKVS, default=True)
+    vedushij = models.CharField(max_length=13, choices=VEDUSHIJKVS, default=True)
     date = models.DateField(null=True, blank=True)
     test = models.IntegerField(default=0)
     rab = models.PositiveSmallIntegerField(default=0)

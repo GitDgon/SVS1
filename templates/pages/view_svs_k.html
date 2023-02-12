@@ -29,6 +29,8 @@
                         <th scope="col"></th>
                         <th scope="col">Название</th>
                         <th scope="col">Дата создания</th>
+                        <th scope="col">Ведущий</th>
+                        <th scope="col">Оператор</th>
                         <th scope="col">Тест</th>
                         <th scope="col">Рабочий</th>
                         <th scope="col">Прием граждан</th>
@@ -47,6 +49,16 @@
                         </td>
                         <td><a href="/kvs/{{ svs_k.id }}">{{ svs_k.name }}</a></td>
                         <td>{{ svs_k.date }}</td>
+                        <td>
+                            {% if svs_k.vedushij == False %}
+                                Да
+                            {% elif svs_k.vedushij == True %}
+                                Нет
+                            {% else %}
+                                {{ svs_k.vedushij }}
+                            {% endif %}
+                        </td>
+                        <td>{{ svs_k.operator | default:"Аноним" }}</td>
                         <td>{{ svs_k.test }}</td>
                         <td>{{ svs_k.rab }}</td>
                         <td> {% if svs_k.priem > 0 %}
