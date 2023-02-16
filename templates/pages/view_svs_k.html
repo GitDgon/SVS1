@@ -50,15 +50,15 @@
                         <td><a href="/kvs/{{ svs_k.id }}">{{ svs_k.name }}</a></td>
                         <td>{{ svs_k.date }}</td>
                         <td>
-                            {% if svs_k.vedushij == False %}
+                            {% if svs_k.vedushij is True %}
                                 Да
-                            {% elif svs_k.vedushij == True %}
-                                Нет
                             {% else %}
                                 {{ svs_k.vedushij }}
                             {% endif %}
+
+
                         </td>
-                        <td>{{ svs_k.operator | default:"Аноним" }}</td>
+                        <td>{{ svs_k.operator }}</td>
                         <td>{{ svs_k.test }}</td>
                         <td>{{ svs_k.rab }}</td>
                         <td> {% if svs_k.priem > 0 %}

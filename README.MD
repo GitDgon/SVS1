@@ -1,3 +1,6 @@
+Сохранение библиотек:
+`pip freeze > reqiurements.txt`
+
 install requirements: 
 `pip install -r requirements.txt`
 
