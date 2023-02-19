@@ -172,17 +172,28 @@ def zvs_my(request):
 def svs_k_page(request):
     svs_ks = Svs_k.objects.all()   #все данные из БД
     total_rab = Svs_k.objects.aggregate(Sum('rab'))
+    total_test = Svs_k.objects.aggregate(Sum('test'))
+    total_priem = Svs_k.objects.aggregate(Sum('priem'))
+
     print(total_rab)
+    print(total_test)
+    print(total_priem)
     print(type(total_rab))
+    print(type(total_test))
+    print(type(total_priem))
 
     sum_rab = total_rab["rab__sum"]
+    sum_test = total_test["test__sum"]
+    sum_priem = total_priem["priem__sum"]
     print(sum_rab)
 
     #print(total_rab[rab_sum])
     context = {
         'pagename': 'Просмотр базы svs_k',
         'svs_ks': svs_ks,
-        'sum_rab': sum_rab
+        'sum_rab': sum_rab,
+        'sum_test': sum_test,
+        'sum_priem': sum_priem,
     }
     return render(request, 'pages/view_svs_k.html', context)
 

@@ -34,6 +34,52 @@
             .errors > li{
                 color: red;
             }
+
+            .scroll-table-body {
+        	height: 400px;
+	        overflow-x:auto;
+	        margin-top: 0px;
+	        margin-bottom: 20px;
+	        border-bottom: 1px solid #eee;
+            }
+            .scroll-table table {
+	        width:100%;
+	        table-layout: fixed;
+	        border: none;
+            }
+
+            .scroll-table thead th {
+	        font-weight: bold;
+	        text-align: center;
+	        border: none;
+	        padding: 3px 15px;
+	        background: #c4c4c4;   <!--цвет шапки таблицы #f9a34b--!>
+	        font-size: 14px;
+            }
+            .scroll-table tbody td {
+	        text-align: center;
+	        border-left: 1px solid #ddd;
+	        border-right: 1px solid #ddd;
+	        padding: 5px 10px;
+	        font-size: 14px;
+	        vertical-align: top;
+            }
+            .scroll-table tbody tr:nth-child(even){
+	        background: #f3f3f3;
+            }
+
+
+
+::-webkit-scrollbar {
+	width: 6px;
+}
+::-webkit-scrollbar-track {
+	box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+::-webkit-scrollbar-thumb {
+	box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
     </style>
     {% endblock %}
 </head>

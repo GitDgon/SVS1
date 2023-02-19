@@ -20,23 +20,31 @@
             </div>
         </div>
 
-        <div class="row">
+        <!--<div class="row">
             <div class="col">
                 <table class="table table-striped">
-                    <thead class="thead-dark">
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col"></th>
-                        <th scope="col">Название</th>
-                        <th scope="col">Дата создания</th>
-                        <th scope="col">Ведущий</th>
-                        <th scope="col">Оператор</th>
-                        <th scope="col">Тест</th>
-                        <th scope="col">Рабочий</th>
-                        <th scope="col">Прием граждан</th>
+                    <thead class="thead-dark"> -->
 
-                    </tr>
-                    </thead>
+        <div class="scroll-table">
+            <table>
+                <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col"></th>
+                    <th scope="col">Название</th>
+                    <th scope="col">Дата создания</th>
+                    <th scope="col">Ведущий</th>
+                    <th scope="col">Оператор</th>
+                    <th scope="col">Тест</th>
+                    <th scope="col">Рабочий</th>
+                    <th scope="col">Прием граждан</th>
+
+                </tr>
+                </thead>
+            </table>
+
+            <div class="scroll-table-body">
+                <table>
                     <tbody>
 
                     {% for svs_k in svs_ks %}
@@ -51,9 +59,9 @@
                         <td>{{ svs_k.date }}</td>
                         <td>
                             {% if svs_k.vedushij is True %}
-                                Да
+                            Да
                             {% else %}
-                                {{ svs_k.vedushij }}
+                            {{ svs_k.vedushij }}
                             {% endif %}
 
 
@@ -62,30 +70,36 @@
                         <td>{{ svs_k.test }}</td>
                         <td>{{ svs_k.rab }}</td>
                         <td> {% if svs_k.priem > 0 %}
-                                ДА
+                            ДА
                             {% else %}
-                                нет
+                            нет
                             {% endif %}
                         </td>
-                    <!--    <td>{{ svs_z.user | default:"Аноним" }}</td>  -->
+                        <!--    <td>{{ svs_z.user | default:"Аноним" }}</td>  -->
                     </tr>
                     {% endfor %}
 
 
                     </tbody>
                 </table>
-
-                <div class="col-8">
-                    <input type="text" name="name" class="form-control form-control-lg"
-                           placeholder=" ИТОГО: рабочих: {{ sum_rab }}">
-                </div>
-
-
-                <div align="right">
-                    <i style="color: gray;">Всего сниппетов: 2</i>
-                </div>
             </div>
         </div>
+
+
+        <div class="col-4">
+            <input type="text" name="name" class="form-control form-control-lg"
+                   placeholder=" ИТОГО: рабочих: {{ sum_rab }}">
+        </div>
+        <div class="col-8">
+            <input type="text" name="name" class="form-control form-control-lg"
+                   placeholder=" ИТОГО: тестовых: {{ sum_test }}">
+        </div>
+
+
+        <div align="right">
+            <i style="color: gray;">Всего сниппетов: 2</i>
+        </div>
+
     </div>
 </main>
 {% endblock %}
