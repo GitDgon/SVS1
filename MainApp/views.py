@@ -171,6 +171,7 @@ def zvs_my(request):
 
 def svs_k_page(request):
     svs_ks = Svs_k.objects.all()   #все данные из БД
+
     total_rab = Svs_k.objects.aggregate(Sum('rab'))
     total_test = Svs_k.objects.aggregate(Sum('test'))
     total_priem = Svs_k.objects.aggregate(Sum('priem'))
@@ -187,6 +188,22 @@ def svs_k_page(request):
     sum_priem = total_priem["priem__sum"]
     print(sum_rab)
 
+
+    print("request GET= ", request.GET)
+    operator = request.GET.get("operator")  # реализация фильтрации по языку программирования
+                                            # если просто запрос без фильтра, то lang = None
+    print(f"{operator=}")
+    if operator is not None:
+        svs_ks = svs_ks.filter(operator=operator)
+        total_rab = Svs_k.objects.aggregate(Sum('rab'))
+        total_test = Svs_k.objects.aggregate(Sum('test'))
+        total_priem = Svs_k.objects.aggregate(Sum('priem'))
+
+        sum_rab = total_rab["rab__sum"]
+        sum_test = total_test["test__sum"]
+        sum_priem = total_priem["priem__sum"]
+
+
     #print(total_rab[rab_sum])
     context = {
         'pagename': 'Просмотр базы svs_k',
@@ -194,6 +211,7 @@ def svs_k_page(request):
         'sum_rab': sum_rab,
         'sum_test': sum_test,
         'sum_priem': sum_priem,
+        'operator': operator,
     }
     return render(request, 'pages/view_svs_k.html', context)
 
@@ -212,7 +230,7 @@ def add_kvs_page(request):   #request содержит всю инф.котор�
         form = KvsForm(request.POST)
         if form.is_valid():
             zvs = form.save(commit=False)  #отложть сохранение и вернуть объект zvs
-        #    zvs.user = request.user  #данные внес пользователь каторый сейчас зарегестрирован, в поле USER
+                    #    zvs.user = request.user  #данные внес пользователь каторый сейчас зарегестрирован, в поле USER
             zvs.save()
         return redirect('kvs-list')
 

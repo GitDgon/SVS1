@@ -18,6 +18,22 @@
                 <p>Пока тут просто пример, но скоро заменим реальными KVS из БД!</p>
                 <hr>
             </div>
+
+
+            <div class="row">
+                <div class="col">
+                    <form method="GET" action="">
+                        <select name="operator">
+                            <option value="Ivanov I.I.">Иванов</option>
+                            <option value="Petrov P.P.">Петров</option>
+                            <option value="Sidorov S.S.">Сидоров</option>
+                        </select>
+                        <button href="{% url 'kvs-list' %}" type="submit">Применить</button>
+                    </form>
+                </div>
+            </div>
+
+
         </div>
 
         <!--<div class="row">
@@ -83,6 +99,26 @@
                     </tbody>
                 </table>
             </div>
+        </div>
+
+
+        <div class="scroll-table">
+            <table>
+                <thead>
+                <tr>
+                    <th scope="col">Всего:</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col">{{ sum_test }}</th>
+                    <th scope="col">{{ sum_rab }}</th>
+                    <th scope="col">{{ sum_priem }}</th>
+
+                </tr>
+                </thead>
+            </table>
         </div>
 
 
