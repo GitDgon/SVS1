@@ -186,7 +186,7 @@ def svs_k_page(request):
     sum_rab = total_rab["rab__sum"]
     sum_test = total_test["test__sum"]
     sum_priem = total_priem["priem__sum"]
-    print(sum_rab)
+    print(sum_priem)
 
 
     print("request GET= ", request.GET)
@@ -195,13 +195,14 @@ def svs_k_page(request):
     print(f"{operator=}")
     if operator is not None:
         svs_ks = svs_ks.filter(operator=operator)
-        total_rab = Svs_k.objects.aggregate(Sum('rab'))
-        total_test = Svs_k.objects.aggregate(Sum('test'))
-        total_priem = Svs_k.objects.aggregate(Sum('priem'))
+        total_rab = Svs_k.objects.filter(operator=operator).aggregate(Sum('rab'))
+        total_test = Svs_k.objects.filter(operator=operator).aggregate(Sum('test'))
+        total_priem = Svs_k.objects.filter(operator=operator).aggregate(Sum('priem'))
 
         sum_rab = total_rab["rab__sum"]
         sum_test = total_test["test__sum"]
         sum_priem = total_priem["priem__sum"]
+        print(sum_priem)
 
 
     #print(total_rab[rab_sum])
