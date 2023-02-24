@@ -24,9 +24,9 @@
                 <div class="col">
                     <form method="GET" action="">
                         <select name="operator">
-                            <option value="Ivanov I.I.">Иванов</option>
-                            <option value="Petrov P.P.">Петров</option>
-                            <option value="Sidorov S.S.">Сидоров</option>
+                            <option value="Ivanov I.I." {% if operator == "Ivanov I.I." %} selected {% endif %}>Иванов</option>
+                            <option value="Petrov P.P." {% if operator == "Petrov P.P." %} selected {% endif %}>Петров</option>
+                            <option value="Sidorov S.S." {% if operator == "Sidorov S.S." %} selected {% endif %}>Сидоров</option>
                         </select>
                         <button href="{% url 'kvs-list' %}" type="submit">Применить</button>
                     </form>
@@ -85,11 +85,12 @@
                         <td>{{ svs_k.operator }}</td>
                         <td>{{ svs_k.test }}</td>
                         <td>{{ svs_k.rab }}</td>
-                        <td> {% if svs_k.priem > 0 %}
-                            ДА
+                        <td> {% if svs_k.priem == True %}
+                            1
                             {% else %}
-                            нет
+                            0
                             {% endif %}
+
                         </td>
                         <!--    <td>{{ svs_z.user | default:"Аноним" }}</td>  -->
                     </tr>
@@ -114,7 +115,14 @@
                     <th scope="col"></th>
                     <th scope="col">{{ sum_test }}</th>
                     <th scope="col">{{ sum_rab }}</th>
-                    <th scope="col">{{ sum_priem }}</th>
+                    <th scope="col">{% if sum_priem == False %}
+                                        0
+                                    {% elif sum_priem == True %}
+                                        1
+                                    {% else %}
+                                        {{ sum_priem }}
+                                    {% endif %}
+                    </th>
 
                 </tr>
                 </thead>

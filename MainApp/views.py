@@ -202,7 +202,7 @@ def svs_k_page(request):
         sum_rab = total_rab["rab__sum"]
         sum_test = total_test["test__sum"]
         sum_priem = total_priem["priem__sum"]
-        print(sum_priem)
+        print("sum_priem2= ", sum_priem)
 
 
     #print(total_rab[rab_sum])
