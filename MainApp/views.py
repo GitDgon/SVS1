@@ -193,16 +193,40 @@ def svs_k_page(request):
     operator = request.GET.get("operator")  # реализация фильтрации по языку программирования
                                             # если просто запрос без фильтра, то lang = None
     print(f"{operator=}")
+
+    data_start = request.GET.get("date_start")
+    data_stop = request.GET.get("date_stop")
+    print("date_start= ", data_start)
+    print("date_stop= ", data_stop)
+
+
     if operator is not None:
         svs_ks = svs_ks.filter(operator=operator)
         total_rab = Svs_k.objects.filter(operator=operator).aggregate(Sum('rab'))
         total_test = Svs_k.objects.filter(operator=operator).aggregate(Sum('test'))
         total_priem = Svs_k.objects.filter(operator=operator).aggregate(Sum('priem'))
-
         sum_rab = total_rab["rab__sum"]
         sum_test = total_test["test__sum"]
         sum_priem = total_priem["priem__sum"]
         print("sum_priem2= ", sum_priem)
+
+    if data_start and data_stop is not None:
+        data_start = request.GET.get("date_start")
+        data_stop = request.GET.get("date_stop")
+        print("date_start= ", data_start)
+        print("date_stop= ", data_stop)
+
+        svs_ks = Svs_k.objects.filter(date__range=[data_start, data_stop])
+        total_rab = Svs_k.objects.filter(date__range=[data_start, data_stop]).aggregate(Sum('rab'))
+        total_test = Svs_k.objects.filter(date__range=[data_start, data_stop]).aggregate(Sum('test'))
+        total_priem = Svs_k.objects.filter(date__range=[data_start, data_stop]).aggregate(Sum('priem'))
+        sum_rab = total_rab["rab__sum"]
+        sum_test = total_test["test__sum"]
+        sum_priem = total_priem["priem__sum"]
+        #print(f"{pool_date=}")
+
+
+
 
 
     #print(total_rab[rab_sum])
@@ -213,6 +237,7 @@ def svs_k_page(request):
         'sum_test': sum_test,
         'sum_priem': sum_priem,
         'operator': operator,
+        #'pool_date': pool_date,
     }
     return render(request, 'pages/view_svs_k.html', context)
 

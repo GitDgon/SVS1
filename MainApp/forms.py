@@ -1,4 +1,4 @@
-from django.forms import ModelForm, Textarea, TextInput
+from django.forms import ModelForm, Textarea, TextInput, DateInput, DateField, SelectDateWidget
 from MainApp.models import Svs_z, Svs_k, Comment
 from django.contrib.auth.models import User
 from django.forms import CharField, PasswordInput
@@ -31,6 +31,7 @@ class KvsForm(ModelForm):
        widgets = {
         #   'name': TextInput(attrs={"placeholder": "Название", "class": "blue"}),
            'lang': Textarea(attrs={"placeholder": "Примечание"}),
+           'date': DateInput(attrs={"placeholder": "ГГГГ-ММ-ДД"}),
 
        }
        labels = {
