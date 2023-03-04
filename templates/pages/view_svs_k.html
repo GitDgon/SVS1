@@ -23,10 +23,10 @@
 
 
                     <form method="GET" action="">
-                            <label>Введите дату начала:</label>
-                            <input name="date_start" type="date" />
-                            <input name="date_stop" type="date" />
-                            <button href="{% url 'kvs-list' %}" type="submit">Применить</button>
+                        <label>Введите дату начала:</label>
+                        <input name="date_start" type="date"/>
+                        <input name="date_stop" type="date"/>
+                        <button href="{% url 'kvs-list' %}" type="submit">Применить</button>
                     </form>
 
 
@@ -80,7 +80,8 @@
                         <td scope="row">{{ svs_k.id }}</td>
                         <td>
                             <a href="{% url 'kvs-delete' svs_k.id %}">
-                                <i style="color: #da7b87" class="fa-solid fa-trash"></i>
+                                <img src="../../static/tresh.png" width="20" height="22" alt="logo" />
+                            <!--    <i style="color: #da7b87" class="fa-solid fa-trash"></i>  -->
                             </a>
                         </td>
                         <td><a href="/kvs/{{ svs_k.id }}">{{ svs_k.name }}</a></td>
@@ -128,12 +129,12 @@
                     <th scope="col">{{ sum_test }}</th>
                     <th scope="col">{{ sum_rab }}</th>
                     <th scope="col">{% if sum_priem == False %}
-                                        0
-                                    {% elif sum_priem == True %}
-                                        1
-                                    {% else %}
-                                        {{ sum_priem }}
-                                    {% endif %}
+                        0
+                        {% elif sum_priem == True %}
+                        1
+                        {% else %}
+                        {{ sum_priem }}
+                        {% endif %}
                     </th>
 
                 </tr>
