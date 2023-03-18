@@ -15,19 +15,22 @@
         <div class="row">
             <div class="col">
                 <p>На данной странице будут отображаться все KVS.</p>
-                <p>Пока тут просто пример, но скоро заменим реальными KVS из БД!</p>
+
                 <hr>
             </div>
 
 
-
-
+            <div class="container">
+                <div class="element-1" style="position: relative; top: 10px; left: -200px;">
                     <form method="GET" action="">
-                        <label>Введите дату начала:</label>
+                        <label>Введите:     дату начала</label>
                         <input name="date_start" type="date"/>
+                        <label>дату окончания:</label>
                         <input name="date_stop" type="date"/>
                         <button href="{% url 'kvs-list' %}" type="submit">Применить</button>
                     </form>
+                    </div>
+                </div>
 
 
 
@@ -35,12 +38,14 @@
             <div class="row">
                 <div class="col">
                     <form method="GET" action="">
+                        <div class="element-2" style="static: relative; top: 10px; left: 0px;">
                         <select name="operator">
                             <option value="Ivanov I.I." {% if operator == "Ivanov I.I." %} selected {% endif %}>Иванов</option>
                             <option value="Petrov P.P." {% if operator == "Petrov P.P." %} selected {% endif %}>Петров</option>
                             <option value="Sidorov S.S." {% if operator == "Sidorov S.S." %} selected {% endif %}>Сидоров</option>
                         </select>
                         <button href="{% url 'kvs-list' %}" type="submit">Применить</button>
+                            </div>
                     </form>
                 </div>
             </div>
@@ -80,7 +85,7 @@
                         <td scope="row">{{ svs_k.id }}</td>
                         <td>
                             <a href="{% url 'kvs-delete' svs_k.id %}">
-                                <img src="../../static/tresh.png" width="20" height="22" alt="logo" />
+                                <img src="../../static/images/tresh.png" width="20" height="22" alt="logo" />
                             <!--    <i style="color: #da7b87" class="fa-solid fa-trash"></i>  -->
                             </a>
                         </td>
