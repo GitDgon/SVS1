@@ -14,7 +14,7 @@ def index_page(request):
     else:
         errors = ["password or username not correct"]
     context = {
-        'pagename': 'PythonBin',
+        'pagename': 'Добро пожаловать на сайт 7 otd!',
         'errors': errors
     }
 
