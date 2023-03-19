@@ -4,6 +4,7 @@
 
 
 <div class="container">
+
     <div class="row">
         <div class="col text-center">
             <h1>{{ pagename }}</h1>
@@ -20,6 +21,7 @@
         </div>
     </div>
 
+    <!--
     <div class="row mt-3">
         <div class="col-4 offset-4">
             <a href=" {% url 'kvs-add' %} " class="btn btn-secondary btn-block">Добавить KVS</a>
@@ -30,7 +32,7 @@
         <div class="col-4 offset-4">
             <a href="{% url 'kvs-list' %}" class="btn btn-secondary btn-block">Посмотреть БД KVS</a>
         </div>
-    </div>
+    </div>                          -->
 
     <!-- <div class="row mt-3">
          <div class="col">
@@ -81,88 +83,85 @@
 
 
     <div class="card-group">
-        <div class="card p-3 mb-2 bg-light text-dark" style="margin: 15px">
-            <img src="../../static/images/BD.jpg" class="card-img-top" width="" height="" alt="">
+        <div class="card p-3 mb-2 bg-light text-dark" style="margin: 15px; height: 25rem;">
+            <img src="../../static/images/BD1.jpg" class="card-img-top" width="" height="" alt="">
             <div class="card-body">
-                <h5 class="card-title">Учет KVS</h5>
-            <!--    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                    content. This content is a little bit longer.</p>
-                      <a href="#" class="card-link">Ссылка карты</a>
-                      <a href="#" class="card-link">Другая ссылка</a> -->
-                <a href=" {% url 'kvs-add' %} " <button type="button" class="btn btn-primary btn-sm">Добавить</button></a>
-                <a href="{% url 'kvs-list' %}" <button type="button" class="btn btn-primary btn-sm">Просмотр KVS</button></a>
-            <!--    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>   -->
+                <h5 class="card-title">Учет и редактирование KVS</h5>
+                <!--    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+                        content. This content is a little bit longer.</p>
+                          <a href="#" class="card-link">Ссылка карты</a>
+                          <a href="#" class="card-link">Другая ссылка</a> -->
+                <a href=" {% url 'kvs-add' %} "
+                <button type="button" class="btn btn-info" >Добавить</button>
+                </a>
+                <a href="{% url 'kvs-list' %}"
+                <button type="button" class="btn btn-info">Просмотр KVS</button>
+                </a>
+                <!--    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>   -->
             </div>
         </div>
-        <div class="card p-3 mb-2 bg-light text-dark" style="margin: 15px">
-            <img src="../../static/images/BD.jpg" class="card-img-top" width="" height="" alt="">
+
+        <div class="card p-3 mb-2 bg-light text-dark" style="margin: 15px; height: 25rem;">
+            <img src="../../static/images/BD4.jpg" class="card-img-top" width="" height="" alt="">
             <div class="card-body">
-                <h5 class="card-title">Учет KVS</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                    content. This content is a little bit longer.</p>
-                <!--      <a href="#" class="card-link">Ссылка карты</a>
-                      <a href="#" class="card-link">Другая ссылка</a> -->
-                <a href="{% url 'kvs-list' %}" class="btn btn-info">Посмотреть БД KVS</a>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                <h5 class="card-title">Учет и редактирование ZVS</h5>
+                <a href=" {% url 'kvs-add' %} "
+                <button type="button" class="btn btn-info" >Добавить</button>
+                </a>
+                <a href="{% url 'kvs-list' %}"
+                <button type="button" class="btn btn-info">Просмотр ZVS</button>
+                </a>
             </div>
         </div>
-        <div class="card p-3 mb-2 bg-light text-dark" style="margin: 15px">
-            <img src="../../static/images/BD.jpg" class="card-img-top" width="" height="" alt="">
+
+        <div class="card p-3 mb-2 bg-light text-dark" style="margin: 15px; height: 25rem;">
+            <img src="../../static/images/fotoalbom2.jpg" class="card-img-top" width="" height="" alt="">
             <div class="card-body">
-                <h5 class="card-title">Учет KVS</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                    content. This content is a little bit longer.</p>
-                <!--      <a href="#" class="card-link">Ссылка карты</a>
-                      <a href="#" class="card-link">Другая ссылка</a> -->
-                <a href="{% url 'kvs-list' %}" class="btn btn-info">Посмотреть БД KVS</a>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                <h5 class="card-title">Фотоальбом</h5>
+                <a href="{% url 'foto' %}" class="btn btn-info">Посмотреть</a>
             </div>
         </div>
     </div>
-
 
 
     <div class="card-group">
-        <div class="card p-3 mb-2 bg-light text-dark" style="margin: 15px">
-            <img src="../../static/images/BD.jpg" class="card-img-top" width="" height="" alt="">
+        <div class="card p-3 mb-2 bg-light text-dark" style="margin: 15px; height: 25rem;">
+            <img src="../../static/images/histori1.jpg" class="card-img-top" width="" height="" alt="">
             <div class="card-body">
-                <h5 class="card-title">Учет KVS</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                    content. This content is a little bit longer.</p>
-                <!--      <a href="#" class="card-link">Ссылка карты</a>
-                      <a href="#" class="card-link">Другая ссылка</a> -->
-                <a href=" {% url 'kvs-add' %} " <button type="button" class="btn btn-primary btn-sm">Добавить</button></a>
-                <a href="{% url 'kvs-list' %}" <button type="button" class="btn btn-primary btn-sm">Просмотр KVS</button></a>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                <h5 class="card-title">История</h5>
+                <a href="" class="btn btn-info">Посмотреть</a>
             </div>
         </div>
-        <div class="card p-3 mb-2 bg-light text-dark" style="margin: 15px">
+
+        <div class="card p-3 mb-2 bg-light text-dark" style="margin: 15px; height: 25rem;">
             <img src="../../static/images/BD.jpg" class="card-img-top" width="" height="" alt="">
             <div class="card-body">
-                <h5 class="card-title">Учет KVS</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                    content. This content is a little bit longer.</p>
-                <!--      <a href="#" class="card-link">Ссылка карты</a>
-                      <a href="#" class="card-link">Другая ссылка</a> -->
-                <a href="{% url 'kvs-list' %}" class="btn btn-info">Посмотреть БД KVS</a>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                <h5 class="card-title">Разное</h5>
+                <a href="" class="btn btn-info">Посмотреть</a>
             </div>
         </div>
-        <div class="card p-3 mb-2 bg-light text-dark" style="margin: 15px">
+
+        <div class="card p-3 mb-2 bg-light text-dark" style="margin: 15px; height: 25rem;">
             <img src="../../static/images/BD.jpg" class="card-img-top" width="" height="" alt="">
             <div class="card-body">
-                <h5 class="card-title">Учет KVS</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                    content. This content is a little bit longer.</p>
-                <!--      <a href="#" class="card-link">Ссылка карты</a>
-                      <a href="#" class="card-link">Другая ссылка</a> -->
-                <a href="{% url 'kvs-list' %}" class="btn btn-info">Посмотреть БД KVS</a>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                <h5 class="card-title">Разное</h5>
+                <a href="" class="btn btn-info">Посмотреть</a>
             </div>
         </div>
+
     </div>
 
-
+<!--
+    <div class="card" style="width: 18rem; height: 10rem; margin: 15px">
+        <div class="card-body">
+            <h5 class="card-title">Название карточки</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Подзаголовок карты</h6>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+            <a href="#" class="card-link">Ссылка карты</a>
+            <a href="#" class="card-link">Другая ссылка</a>
+        </div>
+    </div>           -->
 
 
 </div>

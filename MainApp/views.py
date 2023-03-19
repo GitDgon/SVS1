@@ -285,3 +285,27 @@ def kvs_delete(request, kvs_id):
     kvs = Svs_k.objects.get(pk=kvs_id) #получаем kvs с нужным ID из BD
     kvs.delete()
     return redirect('kvs-list')
+
+
+
+
+
+
+def foto(request):   #отображение fotoalbom
+    print("FOTO")
+
+    context = {
+        'pagename': 'Страница фотоальбома',
+
+    }
+    return render(request, 'pages/fotoalbom.html', context)
+
+
+def albom_holiday(request):   #отображение fotoalbom
+    print("FOTO")
+
+    context = {
+        'pagename': 'Страница фотоальбома',
+
+    }
+    return render(request, 'pages/albom_holiday.html', context)

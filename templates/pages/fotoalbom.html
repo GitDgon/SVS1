@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- Begin page content -->
+
+
+
+
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col text-center">
+                <h1>{{ pagename }}</h1>
+                <hr>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <p>Добро пожаловать, уважаемый пользователь!
+                <p>На этом сайте ты сможешь познакомиться...<br>
+
+                <hr>
+            </div>
+        </div>
+
+
+        <div class="card-group">
+            <div class="card p-3 mb-2 bg-light text-dark" style="margin: 15px; height: 25rem;">
+                <img src="../../static/images/arbaiten.jpg" class="card-img-top" width="" height="" alt="">
+                <div class="card-body">
+                    <h5 class="card-title">Работа</h5>
+                    <a href="" class="btn btn-info">Посмотреть</a>
+                </div>
+            </div>
+
+            <div class="card p-3 mb-2 bg-light text-dark" style="margin: 15px; height: 25rem;">
+                <img src="../../static/images/holiday.jpg" class="card-img-top" width="" height="" alt="">
+                <div class="card-body">
+                    <h5 class="card-title">Досуг</h5>
+                    <a href=" {% url 'albom_holiday' %} " class="btn btn-info">Посмотреть</a>
+                </div>
+            </div>
+
+            <div class="card p-3 mb-2 bg-light text-dark" style="margin: 15px; height: 25rem;">
+                <img src="../../static/images/ar.jpg" class="card-img-top" width="" height="" alt="">
+                <div class="card-body">
+                    <h5 class="card-title">Разное</h5>
+                    <a href="" class="btn btn-info">Посмотреть</a>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+    {% endblock %}
