@@ -22,15 +22,16 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
-
+  <!--height: 100vh;--!>
 }
 
 .image-gallery::after {
   content: "";
-  flex-basis: 350px;
+  flex-grow: 999;
 }
 
 .image-gallery > li {
+  flex: 1 1 auto;
   height: 250px;
   cursor: pointer;
   position: relative;
