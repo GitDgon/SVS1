@@ -203,9 +203,21 @@ def svs_k_page(request):
     priem_gr = request.GET.get("priem_gr")    #если галочка установлена то priem_gr= on
     print("priem_gr= ", priem_gr)
 
+    if data_start and data_stop is not None:
+        data_start = request.GET.get("date_start")
+        data_stop = request.GET.get("date_stop")
+        svs_ks = Svs_k.objects.filter(date__range=[data_start, data_stop])
+        print("svs_ks (date)= ", svs_ks)
+        total_rab = Svs_k.objects.filter(date__range=[data_start, data_stop]).aggregate(Sum('rab'))
+        total_test = Svs_k.objects.filter(date__range=[data_start, data_stop]).aggregate(Sum('test'))
+        total_priem = Svs_k.objects.filter(date__range=[data_start, data_stop]).aggregate(Sum('priem'))
+        sum_rab = total_rab["rab__sum"]
+        sum_test = total_test["test__sum"]
+        sum_priem = total_priem["priem__sum"]
 
     if operator is not None:
         svs_ks = svs_ks.filter(operator=operator)
+        print("svs_ks (operator)= ", svs_ks)
         total_rab = Svs_k.objects.filter(operator=operator).aggregate(Sum('rab'))
         total_test = Svs_k.objects.filter(operator=operator).aggregate(Sum('test'))
         total_priem = Svs_k.objects.filter(operator=operator).aggregate(Sum('priem'))
@@ -214,32 +226,123 @@ def svs_k_page(request):
         sum_priem = total_priem["priem__sum"]
         print("sum_priem2= ", sum_priem)
 
-    if data_start and data_stop is not None:
-        data_start = request.GET.get("date_start")
-        data_stop = request.GET.get("date_stop")
-        print("date_start= ", data_start)
-        print("date_stop= ", data_stop)
-
-        svs_ks = Svs_k.objects.filter(date__range=[data_start, data_stop])
-        total_rab = Svs_k.objects.filter(date__range=[data_start, data_stop]).aggregate(Sum('rab'))
-        total_test = Svs_k.objects.filter(date__range=[data_start, data_stop]).aggregate(Sum('test'))
-        total_priem = Svs_k.objects.filter(date__range=[data_start, data_stop]).aggregate(Sum('priem'))
-        sum_rab = total_rab["rab__sum"]
-        sum_test = total_test["test__sum"]
-        sum_priem = total_priem["priem__sum"]
-        #print(f"{pool_date=}")
-
-
     if priem_gr is not None:
         svs_ks = Svs_k.objects.filter(priem=True)
-        print("svs_ks= ", svs_ks)
-
+        print("svs_ks(priem)= ", svs_ks)
         total_rab = Svs_k.objects.filter(priem=True).aggregate(Sum('rab'))
         total_test = Svs_k.objects.filter(priem=True).aggregate(Sum('test'))
         total_priem = Svs_k.objects.filter(priem=True).aggregate(Sum('priem'))
         sum_rab = total_rab["rab__sum"]
         sum_test = total_test["test__sum"]
         sum_priem = total_priem["priem__sum"]
+
+
+    if operator and data_start and data_stop is not None:
+        data_start = request.GET.get("date_start")
+        data_stop = request.GET.get("date_stop")
+        svs_ks = Svs_k.objects.filter(date__range=[data_start, data_stop]).filter(operator=operator)
+        print("svs_ks (date&operator)= ", svs_ks)
+        total_rab = Svs_k.objects.filter(date__range=[data_start, data_stop]).filter(operator=operator).aggregate(Sum('rab'))
+        total_test = Svs_k.objects.filter(date__range=[data_start, data_stop]).filter(operator=operator).aggregate(Sum('test'))
+        total_priem = Svs_k.objects.filter(date__range=[data_start, data_stop]).filter(operator=operator).aggregate(Sum('priem'))
+        sum_rab = total_rab["rab__sum"]
+        sum_test = total_test["test__sum"]
+        sum_priem = total_priem["priem__sum"]
+
+    if data_start and data_stop and operator and priem_gr is not None:
+        data_start = request.GET.get("date_start")
+        data_stop = request.GET.get("date_stop")
+        svs_ks = Svs_k.objects.filter(date__range=[data_start, data_stop]).filter(operator=operator).filter(priem=True)
+        print("svs_ks (date&operator&priem)= ", svs_ks)
+        total_rab = Svs_k.objects.filter(date__range=[data_start, data_stop]).filter(operator=operator).filter(priem=True).aggregate(Sum('rab'))
+        total_test = Svs_k.objects.filter(date__range=[data_start, data_stop]).filter(operator=operator).filter(priem=True).aggregate(Sum('test'))
+        total_priem = Svs_k.objects.filter(date__range=[data_start, data_stop]).filter(operator=operator).filter(priem=True).aggregate(Sum('priem'))
+        sum_rab = total_rab["rab__sum"]
+        sum_test = total_test["test__sum"]
+        sum_priem = total_priem["priem__sum"]
+
+    if data_start and data_stop and priem_gr is not None:
+        data_start = request.GET.get("date_start")
+        data_stop = request.GET.get("date_stop")
+        svs_ks = Svs_k.objects.filter(date__range=[data_start, data_stop]).filter(priem=True)
+        print("svs_ks (date&priem)= ", svs_ks)
+        total_rab = Svs_k.objects.filter(date__range=[data_start, data_stop]).filter(priem=True).aggregate(Sum('rab'))
+        total_test = Svs_k.objects.filter(date__range=[data_start, data_stop]).filter(priem=True).aggregate(Sum('test'))
+        total_priem = Svs_k.objects.filter(date__range=[data_start, data_stop]).filter(priem=True).aggregate(Sum('priem'))
+        sum_rab = total_rab["rab__sum"]
+        sum_test = total_test["test__sum"]
+        sum_priem = total_priem["priem__sum"]
+
+    if operator and priem_gr is not None:
+        svs_ks = Svs_k.objects.filter(date__range=[data_start, data_stop]).filter(priem=True)
+        print("svs_ks (date&priem)= ", svs_ks)
+        total_rab = Svs_k.objects.filter(operator=operator).filter(priem=True).aggregate(Sum('rab'))
+        total_test = Svs_k.objects.filter(operator=operator).filter(priem=True).aggregate(Sum('test'))
+        total_priem = Svs_k.objects.filter(operator=operator).filter(priem=True).aggregate(Sum('priem'))
+        sum_rab = total_rab["rab__sum"]
+        sum_test = total_test["test__sum"]
+        sum_priem = total_priem["priem__sum"]
+
+
+
+
+
+
+
+
+
+
+        # svs_ks = Svs_k.objects.filter(date__range=[data_start, data_stop]).filter(operator=operator).filter(priem=True)
+        # total_rab = Svs_k.objects.filter(date__range=[data_start, data_stop]).filter(operator=operator).filter(priem=True).aggregate(Sum('rab'))
+        # total_test = Svs_k.objects.filter(date__range=[data_start, data_stop]).filter(operator=operator).filter(priem=True).aggregate(Sum('test'))
+        # total_priem = Svs_k.objects.filter(date__range=[data_start, data_stop]).filter(operator=operator).filter(priem=True).aggregate(Sum('priem'))
+        # sum_rab = total_rab["rab__sum"]
+        # sum_test = total_test["test__sum"]
+        # sum_priem = total_priem["priem__sum"]
+
+
+
+
+
+
+
+
+    # if operator is not None:
+    #     svs_ks = svs_ks.filter(operator=operator)
+    #     total_rab = Svs_k.objects.filter(operator=operator).aggregate(Sum('rab'))
+    #     total_test = Svs_k.objects.filter(operator=operator).aggregate(Sum('test'))
+    #     total_priem = Svs_k.objects.filter(operator=operator).aggregate(Sum('priem'))
+    #     sum_rab = total_rab["rab__sum"]
+    #     sum_test = total_test["test__sum"]
+    #     sum_priem = total_priem["priem__sum"]
+    #     print("sum_priem2= ", sum_priem)
+    #
+    # if data_start and data_stop is not None:
+    #     data_start = request.GET.get("date_start")
+    #     data_stop = request.GET.get("date_stop")
+    #     print("date_start= ", data_start)
+    #     print("date_stop= ", data_stop)
+    #
+    #     svs_ks = Svs_k.objects.filter(date__range=[data_start, data_stop])
+    #     total_rab = Svs_k.objects.filter(date__range=[data_start, data_stop]).aggregate(Sum('rab'))
+    #     total_test = Svs_k.objects.filter(date__range=[data_start, data_stop]).aggregate(Sum('test'))
+    #     total_priem = Svs_k.objects.filter(date__range=[data_start, data_stop]).aggregate(Sum('priem'))
+    #     sum_rab = total_rab["rab__sum"]
+    #     sum_test = total_test["test__sum"]
+    #     sum_priem = total_priem["priem__sum"]
+    #     #print(f"{pool_date=}")
+    #
+    #
+    # if priem_gr is not None:
+    #     svs_ks = Svs_k.objects.filter(priem=True)
+    #     print("svs_ks= ", svs_ks)
+    #
+    #     total_rab = Svs_k.objects.filter(priem=True).aggregate(Sum('rab'))
+    #     total_test = Svs_k.objects.filter(priem=True).aggregate(Sum('test'))
+    #     total_priem = Svs_k.objects.filter(priem=True).aggregate(Sum('priem'))
+    #     sum_rab = total_rab["rab__sum"]
+    #     sum_test = total_test["test__sum"]
+    #     sum_priem = total_priem["priem__sum"]
 
 
 

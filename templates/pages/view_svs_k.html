@@ -12,6 +12,11 @@
             </div>
         </div>
 
+
+
+
+
+
         <div class="row">
             <div class="col">
                 <p>На данной странице будут отображаться все KVS.</p>
@@ -20,14 +25,32 @@
             </div>
 
 
-            <div class="container">
+
+             <div class="container">
                 <div class="element-1" style="position: relative; top: 10px; left: 200px;">
                     <form method="GET" action="">
                         <p><label>Введите:     дату начала</label>
                         <input name="date_start" type="date"/>
                         <label>дату окончания</label>
                         <input name="date_stop" type="date"/>
-                        <button href="{% url 'kvs-list' %}" type="submit">Применить</button> </p>
+
+
+                        <label>оператора:&ensp;</label>
+                        <select name="operator">
+                            <option selected disabled value=""></option>
+                            <option value="Ivanov I.I." {% if operator == "Ivanov I.I." %} selected {% endif %}>Иванов</option>
+                            <option value="Petrov P.P." {% if operator == "Petrov P.P." %} selected {% endif %}>Петров</option>
+                            <option value="Sidorov S.S." {% if operator == "Sidorov S.S." %} selected {% endif %}>Сидоров</option>
+                        </select>
+
+
+                    <p><label>Прием граждан:&ensp;&ensp;</label>
+                        <input type="checkbox" name="priem_gr"/>
+                        <button href="{% url 'kvs-list' %}" type="submit">Применть фильтр</button> </p>
+                    </form>
+
+                    <form method="GET" action="">
+                        <button href="{% url 'kvs-list' %}" type="submit">Обновить базу</button> </p>
                     </form>
                 </div>
             </div>
@@ -64,7 +87,61 @@
 
 
 
-        </div>
+
+
+            <!--
+
+            <div class="container">
+                <div class="element-1" style="position: relative; top: 10px; left: 200px;">
+                    <form method="GET" action="">
+                        <p><label>Введите:     дату начала</label>
+                        <input name="date_start" type="date"/>
+                        <label>дату окончания</label>
+                        <input name="date_stop" type="date"/>
+                        <button href="{% url 'kvs-list' %}" type="submit">Применить</button> </p>
+                    </form>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col">
+                    <form method="GET" action="">
+                        <div class="element-1" style="position: relative; top: 10px; left: 286px;">
+                            <label>оператора:&ensp;</label>
+                        <select name="operator">
+                            <option value="Ivanov I.I." {% if operator == "Ivanov I.I." %} selected {% endif %}>Иванов</option>
+                            <option value="Petrov P.P." {% if operator == "Petrov P.P." %} selected {% endif %}>Петров</option>
+                            <option value="Sidorov S.S." {% if operator == "Sidorov S.S." %} selected {% endif %}>Сидоров</option>
+                        </select>
+                        <button href="{% url 'kvs-list' %}" type="submit">Применить</button>
+                            </div>
+                    </form>
+                </div>
+            </div>
+
+
+            <div class="container">
+                <div class="element-1" style="position: relative; top: 10px; left: 200px;">
+                    <form method="GET" action="">
+                        <p><label>Прием граждан:&ensp;&ensp;</label>
+                        <input type="checkbox" name="priem_gr"/>
+                        <button href="{% url 'kvs-list' %}" type="submit">Применить</button> </p>
+                    </form>
+                </div>
+            </div>                         -->
+
+
+
+
+
+
+
+
+
+
+
+
 
         <!--<div class="row">
             <div class="col">
