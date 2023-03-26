@@ -200,6 +200,10 @@ def svs_k_page(request):
     print("date_stop= ", data_stop)
 
 
+    priem_gr = request.GET.get("priem_gr")    #если галочка установлена то priem_gr= on
+    print("priem_gr= ", priem_gr)
+
+
     if operator is not None:
         svs_ks = svs_ks.filter(operator=operator)
         total_rab = Svs_k.objects.filter(operator=operator).aggregate(Sum('rab'))
@@ -226,6 +230,16 @@ def svs_k_page(request):
         #print(f"{pool_date=}")
 
 
+    if priem_gr is not None:
+        svs_ks = Svs_k.objects.filter(priem=True)
+        print("svs_ks= ", svs_ks)
+
+        total_rab = Svs_k.objects.filter(priem=True).aggregate(Sum('rab'))
+        total_test = Svs_k.objects.filter(priem=True).aggregate(Sum('test'))
+        total_priem = Svs_k.objects.filter(priem=True).aggregate(Sum('priem'))
+        sum_rab = total_rab["rab__sum"]
+        sum_test = total_test["test__sum"]
+        sum_priem = total_priem["priem__sum"]
 
 
 

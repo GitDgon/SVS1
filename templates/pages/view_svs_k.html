@@ -21,16 +21,16 @@
 
 
             <div class="container">
-                <div class="element-1" style="position: relative; top: 10px; left: -200px;">
+                <div class="element-1" style="position: relative; top: 10px; left: 200px;">
                     <form method="GET" action="">
-                        <label>Введите:     дату начала</label>
+                        <p><label>Введите:     дату начала</label>
                         <input name="date_start" type="date"/>
-                        <label>дату окончания:</label>
+                        <label>дату окончания</label>
                         <input name="date_stop" type="date"/>
-                        <button href="{% url 'kvs-list' %}" type="submit">Применить</button>
+                        <button href="{% url 'kvs-list' %}" type="submit">Применить</button> </p>
                     </form>
-                    </div>
                 </div>
+            </div>
 
 
 
@@ -38,7 +38,8 @@
             <div class="row">
                 <div class="col">
                     <form method="GET" action="">
-                        <div class="element-2" style="static: relative; top: 10px; left: 0px;">
+                        <div class="element-1" style="position: relative; top: 10px; left: 286px;">
+                            <label>оператора:&ensp;</label>
                         <select name="operator">
                             <option value="Ivanov I.I." {% if operator == "Ivanov I.I." %} selected {% endif %}>Иванов</option>
                             <option value="Petrov P.P." {% if operator == "Petrov P.P." %} selected {% endif %}>Петров</option>
@@ -51,6 +52,18 @@
             </div>
 
 
+            <div class="container">
+                <div class="element-1" style="position: relative; top: 10px; left: 200px;">
+                    <form method="GET" action="">
+                        <p><label>Прием граждан:&ensp;&ensp;</label>
+                        <input type="checkbox" name="priem_gr"/>
+                        <button href="{% url 'kvs-list' %}" type="submit">Применить</button> </p>
+                    </form>
+                </div>
+            </div>
+
+
+
         </div>
 
         <!--<div class="row">
@@ -58,7 +71,7 @@
                 <table class="table table-striped">
                     <thead class="thead-dark"> -->
 
-        <div class="scroll-table">
+        <div class="scroll-table" style="position: relative; top: 20px; left: ;">
             <table>
                 <thead>
                 <tr>
