@@ -27,7 +27,9 @@ class KvsForm(ModelForm):
    class Meta:
        model = Svs_k
        # Описываем поля, которые будем заполнять в форме
+
        fields = ['name', 'date', 'vedushij', 'operator', 'test', 'rab', 'priem', 'lang']
+       ordering = ['date']
        widgets = {
         #   'name': TextInput(attrs={"placeholder": "Название", "class": "blue"}),
            'lang': Textarea(attrs={"placeholder": "Примечание"}),

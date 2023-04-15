@@ -170,7 +170,7 @@ def zvs_my(request):
         #KVS
 
 def svs_k_page(request):
-    svs_ks = Svs_k.objects.all()   #все данные из БД
+    svs_ks = Svs_k.objects.all().order_by('-date')   #все данные из БД
 
     total_rab = Svs_k.objects.aggregate(Sum('rab'))
     total_test = Svs_k.objects.aggregate(Sum('test'))
