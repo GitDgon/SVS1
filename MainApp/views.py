@@ -276,7 +276,7 @@ def svs_k_page(request):
         sum_priem = total_priem["priem__sum"]
 
     if operator and priem_gr is not None:
-        svs_ks = Svs_k.objects.filter(date__range=[data_start, data_stop]).filter(priem=True)
+        svs_ks = Svs_k.objects.filter(operator=operator).filter(priem=True)
         print("svs_ks (date&priem)= ", svs_ks)
         total_rab = Svs_k.objects.filter(operator=operator).filter(priem=True).aggregate(Sum('rab'))
         total_test = Svs_k.objects.filter(operator=operator).filter(priem=True).aggregate(Sum('test'))
@@ -487,7 +487,7 @@ def svs_zz_page(request):
         sum_priem = total_priem["priem__sum"]
 
     if operator is not None:
-        svs_zz = svs_ks.filter(operator=operator)
+        svs_zz = svs_zz.filter(operator=operator)
         print("svs_zz (operator)= ", svs_zz)
         total_rab = Svs_zz.objects.filter(operator=operator).aggregate(Sum('rab'))
         total_test = Svs_zz.objects.filter(operator=operator).aggregate(Sum('test'))
@@ -545,7 +545,7 @@ def svs_zz_page(request):
         sum_priem = total_priem["priem__sum"]
 
     if operator and priem_gr is not None:
-        svs_zz = Svs_zz.objects.filter(date__range=[data_start, data_stop]).filter(priem=True)
+        svs_zz = Svs_zz.objects.filter(operator=operator).filter(priem=True)
         print("svs_zz (date&priem)= ", svs_zz)
         total_rab = Svs_zz.objects.filter(operator=operator).filter(priem=True).aggregate(Sum('rab'))
         total_test = Svs_zz.objects.filter(operator=operator).filter(priem=True).aggregate(Sum('test'))
