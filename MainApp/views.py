@@ -1,10 +1,11 @@
 from django.http import Http404
 from django.shortcuts import render, redirect
-from MainApp.models import Svs_z, Svs_k
-from MainApp.forms import ZvsForm, KvsForm, UserRegistrationForm, CommentForm
+from MainApp.models import Svs_z, Svs_k, Svs_zz
+from MainApp.forms import ZvsForm, KvsForm, ZZvsForm, UserRegistrationForm, CommentForm
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.db.models import Sum
+from django.contrib import messages
 
 
 def index_page(request):
@@ -114,6 +115,7 @@ def comment_add(request):    #добавление комментария
 def zvs_delete(request, zvs_id):
     zvs = Svs_z.objects.get(pk=zvs_id) #получаем zvs с нужным ID из BD
     zvs.delete()
+
     return redirect('zvs-list')
 
 
@@ -206,7 +208,7 @@ def svs_k_page(request):
     if data_start and data_stop is not None:
         data_start = request.GET.get("date_start")
         data_stop = request.GET.get("date_stop")
-        svs_ks = Svs_k.objects.filter(date__range=[data_start, data_stop])
+        svs_ks = Svs_k.objects.filter(date__range=[data_start, data_stop]).order_by('-date')
         print("svs_ks (date)= ", svs_ks)
         total_rab = Svs_k.objects.filter(date__range=[data_start, data_stop]).aggregate(Sum('rab'))
         total_test = Svs_k.objects.filter(date__range=[data_start, data_stop]).aggregate(Sum('test'))
@@ -426,3 +428,182 @@ def albom_holiday(request):   #отображение fotoalbom
 
     }
     return render(request, 'pages/albom_holiday.html', context)
+
+
+
+
+
+
+
+
+
+
+        #ZVS
+
+def svs_zz_page(request):
+    svs_zz = Svs_zz.objects.all().order_by('-date')   #все данные из БД
+
+    total_rab = Svs_zz.objects.aggregate(Sum('rab'))
+    total_test = Svs_zz.objects.aggregate(Sum('test'))
+    total_priem = Svs_zz.objects.aggregate(Sum('priem'))
+
+    print(total_rab)
+    print(total_test)
+    print(total_priem)
+    print(type(total_rab))
+    print(type(total_test))
+    print(type(total_priem))
+
+    sum_rab = total_rab["rab__sum"]
+    sum_test = total_test["test__sum"]
+    sum_priem = total_priem["priem__sum"]
+    print(sum_priem)
+
+
+    print("request GET= ", request.GET)
+    operator = request.GET.get("operator")  # реализация фильтрации по языку программирования
+                                            # если просто запрос без фильтра, то lang = None
+    print(f"{operator=}")
+
+    data_start = request.GET.get("date_start")
+    data_stop = request.GET.get("date_stop")
+    print("date_start= ", data_start)
+    print("date_stop= ", data_stop)
+
+
+    priem_gr = request.GET.get("priem_gr")    #если галочка установлена то priem_gr= on
+    print("priem_gr= ", priem_gr)
+
+    if data_start and data_stop is not None:
+        data_start = request.GET.get("date_start")
+        data_stop = request.GET.get("date_stop")
+        svs_zz = Svs_zz.objects.filter(date__range=[data_start, data_stop]).order_by('-date')
+        print("svs_zz (date)= ", svs_zz)
+        total_rab = Svs_zz.objects.filter(date__range=[data_start, data_stop]).aggregate(Sum('rab'))
+        total_test = Svs_zz.objects.filter(date__range=[data_start, data_stop]).aggregate(Sum('test'))
+        total_priem = Svs_zz.objects.filter(date__range=[data_start, data_stop]).aggregate(Sum('priem'))
+        sum_rab = total_rab["rab__sum"]
+        sum_test = total_test["test__sum"]
+        sum_priem = total_priem["priem__sum"]
+
+    if operator is not None:
+        svs_zz = svs_ks.filter(operator=operator)
+        print("svs_zz (operator)= ", svs_zz)
+        total_rab = Svs_zz.objects.filter(operator=operator).aggregate(Sum('rab'))
+        total_test = Svs_zz.objects.filter(operator=operator).aggregate(Sum('test'))
+        total_priem = Svs_zz.objects.filter(operator=operator).aggregate(Sum('priem'))
+        sum_rab = total_rab["rab__sum"]
+        sum_test = total_test["test__sum"]
+        sum_priem = total_priem["priem__sum"]
+        print("sum_priem2= ", sum_priem)
+
+    if priem_gr is not None:
+        svs_zz = Svs_zz.objects.filter(priem=True)
+        print("svs_zz(priem)= ", svs_zz)
+        total_rab = Svs_zz.objects.filter(priem=True).aggregate(Sum('rab'))
+        total_test = Svs_zz.objects.filter(priem=True).aggregate(Sum('test'))
+        total_priem = Svs_zz.objects.filter(priem=True).aggregate(Sum('priem'))
+        sum_rab = total_rab["rab__sum"]
+        sum_test = total_test["test__sum"]
+        sum_priem = total_priem["priem__sum"]
+
+
+    if operator and data_start and data_stop is not None:
+        data_start = request.GET.get("date_start")
+        data_stop = request.GET.get("date_stop")
+        svs_zz = Svs_zz.objects.filter(date__range=[data_start, data_stop]).filter(operator=operator)
+        print("svs_zz (date&operator)= ", svs_zz)
+        total_rab = Svs_zz.objects.filter(date__range=[data_start, data_stop]).filter(operator=operator).aggregate(Sum('rab'))
+        total_test = Svs_zz.objects.filter(date__range=[data_start, data_stop]).filter(operator=operator).aggregate(Sum('test'))
+        total_priem = Svs_zz.objects.filter(date__range=[data_start, data_stop]).filter(operator=operator).aggregate(Sum('priem'))
+        sum_rab = total_rab["rab__sum"]
+        sum_test = total_test["test__sum"]
+        sum_priem = total_priem["priem__sum"]
+
+    if data_start and data_stop and operator and priem_gr is not None:
+        data_start = request.GET.get("date_start")
+        data_stop = request.GET.get("date_stop")
+        svs_zz = Svs_zz.objects.filter(date__range=[data_start, data_stop]).filter(operator=operator).filter(priem=True)
+        print("svs_zz (date&operator&priem)= ", svs_zz)
+        total_rab = Svs_zz.objects.filter(date__range=[data_start, data_stop]).filter(operator=operator).filter(priem=True).aggregate(Sum('rab'))
+        total_test = Svs_zz.objects.filter(date__range=[data_start, data_stop]).filter(operator=operator).filter(priem=True).aggregate(Sum('test'))
+        total_priem = Svs_zz.objects.filter(date__range=[data_start, data_stop]).filter(operator=operator).filter(priem=True).aggregate(Sum('priem'))
+        sum_rab = total_rab["rab__sum"]
+        sum_test = total_test["test__sum"]
+        sum_priem = total_priem["priem__sum"]
+
+    if data_start and data_stop and priem_gr is not None:
+        data_start = request.GET.get("date_start")
+        data_stop = request.GET.get("date_stop")
+        svs_zz = Svs_zz.objects.filter(date__range=[data_start, data_stop]).filter(priem=True)
+        print("svs_zz (date&priem)= ", svs_zz)
+        total_rab = Svs_zz.objects.filter(date__range=[data_start, data_stop]).filter(priem=True).aggregate(Sum('rab'))
+        total_test = Svs_zz.objects.filter(date__range=[data_start, data_stop]).filter(priem=True).aggregate(Sum('test'))
+        total_priem = Svs_zz.objects.filter(date__range=[data_start, data_stop]).filter(priem=True).aggregate(Sum('priem'))
+        sum_rab = total_rab["rab__sum"]
+        sum_test = total_test["test__sum"]
+        sum_priem = total_priem["priem__sum"]
+
+    if operator and priem_gr is not None:
+        svs_zz = Svs_zz.objects.filter(date__range=[data_start, data_stop]).filter(priem=True)
+        print("svs_zz (date&priem)= ", svs_zz)
+        total_rab = Svs_zz.objects.filter(operator=operator).filter(priem=True).aggregate(Sum('rab'))
+        total_test = Svs_zz.objects.filter(operator=operator).filter(priem=True).aggregate(Sum('test'))
+        total_priem = Svs_zz.objects.filter(operator=operator).filter(priem=True).aggregate(Sum('priem'))
+        sum_rab = total_rab["rab__sum"]
+        sum_test = total_test["test__sum"]
+        sum_priem = total_priem["priem__sum"]
+
+
+
+    context = {
+        'pagename': 'Просмотр базы svs_z',
+        'svs_zz': svs_zz,
+        'sum_rab': sum_rab,
+        'sum_test': sum_test,
+        'sum_priem': sum_priem,
+        'operator': operator,
+        #'pool_date': pool_date,
+    }
+    return render(request, 'pages/view_svs_zz.html', context)
+
+
+
+def add_zzvs_page(request):   #request содержит всю инф.которую мы получаем из браузера
+    if request.method == "POST":    #обработка данных полученных из Формы
+
+        form = ZZvsForm(request.POST)
+        if form.is_valid():
+            zzvs = form.save(commit=False)  #отложть сохранение и вернуть объект zvs
+                    #    zvs.user = request.user  #данные внес пользователь каторый сейчас зарегестрирован, в поле USER
+            zzvs.save()
+        return redirect('zzvs-list')
+
+    elif request.method == "GET":
+        form = ZZvsForm()
+        context = {
+            'pagename': 'Добавление нового ZZVS',\
+            'form': form
+            }
+        return render(request, 'pages/add_zzvs.html', context)
+
+
+def zzvs_detail(request, zzvs_id):   #отображение отдельного kvs
+    print("zzvs_ID=", zzvs_id)
+    zzvs = Svs_zz.objects.get(pk=zzvs_id)
+    context = {
+        'pagename': 'Страница отдельного zzvs',
+        "zzvs": zzvs,
+    }
+    return render(request, 'pages/page_zzvs.html', context)
+
+
+
+def zzvs_delete(request, zzvs_id):
+    print(zzvs_id)
+    zzvs = Svs_zz.objects.get(pk=zzvs_id) #получаем kvs с нужным ID из BD
+    zzvs.delete()
+    return redirect('zzvs-list')
+
+
+

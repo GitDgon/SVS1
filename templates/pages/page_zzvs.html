@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container">
+        <fieldset disabled>
+            <div class="row disabled">
+
+                <div class="col col-8">
+                    Название: <input type="text" value="{{ zzvs.name }}" class="form-control">
+                </div>
+
+                <div class="col col-4">
+                    Дата создания:<input type="text" value="{{ zzvs.date }}" class="form-control">
+                </div>
+
+                <div class="col col-4">
+                    Тестовый:<input type="text" value="{{ zzvs.test }}" class="form-control">
+                </div>
+                <div class="col col-4">
+                    Рабочий:<input type="text" value="{{ zzvs.rab }}" class="form-control">
+                </div>
+                <div class="col col-4">
+                    Приём:<input type="text" value="{{ zzvs.priem }}" class="form-control">
+                </div>
+
+
+            </div>
+            <hr>
+
+
+            <div class="row">
+                <div class="col">
+                    <div class="p-2 h-100" style="border:1px solid #ced4da; border-radius:5px;">
+                        <p>
+                            {{ zzvs.lang }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+        </fieldset>
+    </div>
+{% endblock %}

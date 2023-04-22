@@ -22,10 +22,19 @@ urlpatterns = [
     path('comment/add', views.comment_add, name="comment_add"),
 
 
+
+
     path('kvs/list', views.svs_k_page, name='kvs-list'),
     path('kvs/add', views.add_kvs_page, name='kvs-add'),
     path('kvs/<int:kvs_id>/', views.kvs_detail, name='kvs-detail'),
     path('kvs/<int:kvs_id>/delete', views.kvs_delete, name='kvs-delete'),
+
+    path('zzvs/list', views.svs_zz_page, name='zzvs-list'),
+    path('zzvs/add', views.add_zzvs_page, name='zzvs-add'),
+    path('zzvs/<int:zzvs_id>/', views.zzvs_detail, name='zzvs-detail'),
+    path('zzvs/<int:zzvs_id>/delete', views.zzvs_delete, name='zzvs-delete'),
+
+
 
     path('foto/', views.foto, name='foto'),
     path('foto/holiday', views.albom_holiday, name='albom_holiday'),

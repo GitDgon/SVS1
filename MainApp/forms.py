@@ -1,5 +1,5 @@
 from django.forms import ModelForm, Textarea, TextInput, DateInput, DateField, SelectDateWidget
-from MainApp.models import Svs_z, Svs_k, Comment
+from MainApp.models import Svs_z, Svs_k, Svs_zz, Comment
 from django.contrib.auth.models import User
 from django.forms import CharField, PasswordInput
 from django.core.exceptions import ValidationError
@@ -41,6 +41,27 @@ class KvsForm(ModelForm):
 #           'lang': '',
 #           'code': ''
        }
+
+
+class ZZvsForm(ModelForm):
+   class Meta:
+       model = Svs_zz
+       # Описываем поля, которые будем заполнять в форме
+
+       fields = ['name', 'date', 'vedushij', 'operator', 'test', 'rab', 'priem', 'lang']
+       ordering = ['date']
+       widgets = {
+        #   'name': TextInput(attrs={"placeholder": "Название", "class": "blue"}),
+           'lang': Textarea(attrs={"placeholder": "Примечание (необязательно)"}),
+           'date': DateInput(attrs={"placeholder": "ГГГГ-ММ-ДД"}),
+
+       }
+       labels = {
+#           'name': '',
+#           'lang': '',
+#           'code': ''
+       }
+
 
 #    name = models.CharField(max_length=3, choices=NAMEKVS)
 #    date = models.DateField(null=True, blank=True)

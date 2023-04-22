@@ -15,6 +15,12 @@ NAMEKVS = [
 
 ]
 
+NAMEZVS = [
+    ("ГУБ", "GUB"),
+
+]
+
+
 OPERATORKVS = [
     ("Ivanov I.I.", "Иванов"),
     ("Petrov P.P.", "Петров"),
@@ -22,12 +28,28 @@ OPERATORKVS = [
 
 ]
 
-VEDUSHIJKVS = [
-    ("MinStroj", "Минстрой"),
-    ("MinZdrav", "Минздрав"),
-    ("Ektb", "Екатеринбург"),
+OPERATORZVS = [
+    ("Иванов", "Ivanov"),
+    ("Петров", "Petrov"),
+    ("Сидоров", "Sidorov"),
 
 ]
+
+
+VEDUSHIJKVS = [
+    ("ППП", "PPP"),
+    ("ЗППП", "ZPPP"),
+
+]
+
+VEDUSHIJZVS = [
+    ("Строй", "SROY"),
+    ("Здрав", "ZDRAV"),
+
+]
+
+
+
 
 class Svs_k(models.Model):
     name = models.CharField(max_length=12, choices=NAMEKVS)
@@ -38,6 +60,22 @@ class Svs_k(models.Model):
     rab = models.PositiveSmallIntegerField(default=0)
     priem = models.BooleanField(default=False)
     lang = models.CharField(max_length=300)
+
+
+class Svs_zz(models.Model):
+    name = models.CharField(max_length=12, choices=NAMEZVS)
+    operator = models.CharField(max_length=13, choices=OPERATORZVS, default=True)
+    vedushij = models.CharField(max_length=13, choices=VEDUSHIJZVS, default=True)
+    date = models.DateField(null=True, blank=True)
+    test = models.PositiveSmallIntegerField(default=0)
+    rab = models.PositiveSmallIntegerField(default=0)
+    priem = models.BooleanField(default=False)
+    lang = models.CharField(max_length=300, blank=True, null=True)
+
+
+
+
+
 
 
 

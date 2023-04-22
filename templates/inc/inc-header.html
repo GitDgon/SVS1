@@ -14,20 +14,20 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav mr-auto">
                     <li class="form-inline">
-                        <a class="btn btn-outline-secondary" href="{% url 'zvs-add' %}">
-                            Добавить сниппет
+                        <a class="btn btn-outline-secondary" href="">
+                            Разное
                         </a>
                     </li>
                     <li class="form-inline">
-                        <a class="btn btn-outline-info" href="{% url 'zvs-list' %}">
-                            Посмотреть сниппеты
+                        <a class="btn btn-outline-info" href="">
+                            Разное
                         </a>
                     </li>
 
                     {% if request.user.is_authenticated %}
                     <li class="form-inline">
-                        <a class="btn btn-outline-info" href="{% url 'zvs-my' %}">
-                            Мои zvs
+                        <a class="btn btn-outline-info" href="">
+                            Разное
                         </a>
                     </li>
                     {% endif %}
